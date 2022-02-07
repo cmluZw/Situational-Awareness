@@ -15,10 +15,12 @@ db = SQLAlchemy(app)
 #通过输入的用户名查找密码
 def selectpassword(username):
     T = User.query.filter_by(username=username).all()
-    for u in T:
-        Tpassword = u.password
-    return Tpassword
-
+    if T:
+        for u in T:
+            Tpassword = u.password
+        return Tpassword
+    else:
+        return 0
 
 #密码比对
 def check(username,password):

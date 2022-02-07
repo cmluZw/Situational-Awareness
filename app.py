@@ -1,6 +1,6 @@
 # -*- coding:utf-8 -*-
 
-from flask import Flask, request
+from flask import Flask, request, render_template
 from flask_sqlalchemy import SQLAlchemy
 from admin import user
 
@@ -27,9 +27,12 @@ def login():
         info=user.check(str(username),str(password))
         return info
     else:
-        return 'GET'
+        return render_template('login.html')
 
-
+@app.route('/ip',methods=['GET','POST'])
+def localbyip():
+    if request.method=='POST':
+        ip= request.form['ip']
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0',port=5000,debug=True)

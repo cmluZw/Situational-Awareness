@@ -1,10 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+{% extends "base.html" %}
+{% block title %}python flask user page{% endblock %}
+{% block head %}
+    <style type="text/css"></style>
+{% endblock %}
+{% block content %}
+    <form action="{{ url_for('login') }}" method="post">
+        账号：<input name="username" type="text"/><br/>
+        密码：<input name="password" type="password"/><br/>
+        <button type="submit">登录</button>
+    </form>
+{% endblock %}
