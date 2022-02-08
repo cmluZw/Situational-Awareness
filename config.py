@@ -1,4 +1,5 @@
 
 DEBUG = True
 SQLALCHEMY_ECHO = False
-SQLALCHEMY_DATABASE_URI='mysql+pymysql://root:123456789@127.0.0.1:3306/test?charset=utf8'
+SQLALCHEMY_TRACK_MODIFICATIONS=True
+SQLALCHEMY_DATABASE_URI='mysql+pymysql://root:123456789@127.0.0.1:3306/situational?charset=utf8'

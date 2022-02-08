@@ -2,7 +2,7 @@
 
 from flask import Flask, request, render_template
 from flask_sqlalchemy import SQLAlchemy
-from admin import user
+from admin import user,ipanalyse,sshanalyse
 
 
 # 建立flask对象
@@ -29,10 +29,17 @@ def login():
     else:
         return render_template('login.html')
 
-@app.route('/ip',methods=['GET','POST'])
+#分析ip，结果存入数据库
+@app.route('/ip',methods=['GET'])
 def localbyip():
-    if request.method=='POST':
-        ip= request.form['ip']
+    ip=request.args.get('ip')
+    ipanalyse.seperate_ip(ip)
+    return 'ip存入'
+
+@app.route('/ssh',methods=['GET'])
+def ssh():
+    sshanalyse.analyseByfile()
+    return 'ssh存入'
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0',port=5000,debug=True)
