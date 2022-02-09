@@ -11,7 +11,13 @@ apache_log = '/var/log/apache2/access.log'
 #爆破次数设定
 burst_num=30
 
-
+# SQL 注入攻击匹配规则
+sqlrule = "'|--|update|extractvalue|union|select|substr|information_schema".split(
+    '|')
+# XSS 跨站攻击匹配规则
+xssrule = "script|iframe|javascript|onerror|onmouseover|/>".split('|')
+# 木马后门 匹配规则
+backrule = "eval|assert|system|shell_exec|passthru".split('|')
 
 
 #type设置

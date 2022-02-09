@@ -28,7 +28,7 @@ def apacheanalyse():
 
     ##以上将统计数量和ip结果赋值成功
 
-# 分析爆破,如果请求的是同一个文件记为爆破，请求次数设为30
+# 分析爆破和目录遍历,如果请求的是同一个文件记为爆破，请求次数设为30
 
     length=len(ips)
     for i in range(0,length):
@@ -67,3 +67,4 @@ def apacheanalyse():
                 #print(apache.getip(),apache.getnum(),apache.getattack_type(),apache.getraw_request()) 测试成功
             else:
                 pass
+
