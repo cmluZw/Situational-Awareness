@@ -41,5 +41,10 @@ def ssh():
     sshanalyse.analyseByfile()
     return 'ssh存入'
 
+@app.route('/apache',methods=['GET'])
+def ssh():
+    sshanalyse.analyseByfile()
+    return 'apache存入'
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0',port=5000,debug=True)
