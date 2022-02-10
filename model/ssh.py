@@ -45,3 +45,4 @@ class Ssh(db.Model):
     def insert(self):
         db.session.add(self)
         db.session.commit()
+
