@@ -1,5 +1,7 @@
 # Situational-Awareness 态势感知系统
 
+参考：https://github.com/lw1988/PyAwearnessSystem
+
 态势感知系统，基于python和flask，期望能同时在windows和linux上运行
 
 2022-02-07 更新登录功能
