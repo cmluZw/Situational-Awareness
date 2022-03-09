@@ -39,7 +39,7 @@ def analyseByfile():
     # logBycmd()
     #执行命令，将执行结果写入文件ssh_analyse
     '''监控 ssh 的失败登录日志'''
-    ssh_fp = open('../output/analyse/ssh_analyse.txt', 'r')
+    ssh_fp = open('output/analyse/ssh_analyse.txt', 'r')
     raw_data = ssh_fp.readlines()
     ssh_fp.close()
     length=len(raw_data)-2 #这里-2是为了除去最后的日期 sat 22
@@ -61,4 +61,4 @@ def analyseByfile():
         ipanalyse.seperate_ip(ssh.ip.split('\n')[0])
 
 
-analyseByfile()
+# analyseByfile()

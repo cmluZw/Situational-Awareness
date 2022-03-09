@@ -27,7 +27,7 @@ class Apache(db.Model):
 
     attack_type=db.Column(db.String(200))
 
-    raw_request=db.Column(db.text(100000))
+    raw_request=db.Column(db.String(20000))
 
     #构造方法
     def __init__(self, id=None, ip=None, time=None,num=None,attack_type=None,raw_request=None):

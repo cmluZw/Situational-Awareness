@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <script src="{{ url_for('static', filename='jquery1.42.min.js') }}"></script>
+    {% block head %}{% endblock %}
+</head>
+<body>
+{% block content %}{% endblock %}
+</body>
+</html>

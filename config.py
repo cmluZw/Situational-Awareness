@@ -22,12 +22,27 @@ backrule = "eval|assert|system|shell_exec|passthru".split('|')
 
 #type设置
 attackType = {
-    0: '无威胁',
-    1: 'XSS跨站',
-    2: 'SQL注入',
-    3: '目录扫描',
-    4: 'DoS攻击',
-    5: '暴力破解',
-    6: '木马后门',
-    7: 'SSH爆破'
+    100: '无威胁',
+    101: 'XSS跨站',
+    102: 'SQL注入',
+    103: '目录扫描',
+    104: 'DoS攻击',
+    105: '暴力破解',
+    106: '木马后门',
+    107: 'SSH爆破'
 }
+
+# 要监视是否正常运行的程序列表
+process = ['apache', 'mysqld', 'vsftpd', 'sshd']
+
+
+local_ip = '10.13.235.191'
+local_adapter = 'wlp4s0'  #网卡名字可不指定
+local_coord = [-118.24368, 34.05223]
+local_city = 'Los Angeles'
+
+
+# 流量统计单位
+stream_unit = 1024               # KB
+# stream_unit = 1024 * 1024        # MB
+# stream_unit = 1024 * 1024 * 1024 # GB

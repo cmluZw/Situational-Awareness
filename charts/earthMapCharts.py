@@ -69,6 +69,7 @@ style_geo = style.add(
 def earthMap():
     local_city="Chengdu"
     ip_list, city_list, weidu_list, jindu_list, country_list = selectip()
+    # print(ip_list,city_list,weidu_list,jindu_list,country_list)
     world=GeoLines("全球攻击情况统计","",title_pos='center', width=1000, height=1000)
     districts=list()
     values=list()
@@ -83,5 +84,7 @@ def earthMap():
     # world.add("",districts, values, maptype='world',is_visualmap=True,is_label_show=False,)
     world.add('', districts, **style_geo)
     print(districts)
-    world.render()
+    # world.render()
+    world.chart_id="earth_map"
+    return world
 earthMap()

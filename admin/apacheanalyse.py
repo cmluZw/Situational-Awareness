@@ -56,13 +56,13 @@ def apacheanalyse():
                 apache.ip=addr
                 apache.num=count
                 apache.time=times[0]
-                # 如果是请求的都是同一文件则判断为暴力破解,类型为5
+                # 如果是请求的都是同一文件则判断为暴力破解,类型为105
                 if files[-1] == files[-2] == files[-3] == files[-4]:
                     apache.raw_request = files[-1]
-                    apache.attack_type=5
+                    apache.attack_type=105
                 # 否则判断为目录扫描
                 else:
-                    apache.attack_type = 3
+                    apache.attack_type = 103
                 apache.insert()  #存入数据库
                 #print(apache.getip(),apache.getnum(),apache.getattack_type(),apache.getraw_request()) 测试成功
             else:

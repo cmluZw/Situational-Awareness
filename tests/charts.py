@@ -13,7 +13,7 @@
 # bar.add("linux2",columns,data2,mark_line=["average"], mark_point=["max", "min"])
 # bar.render()
 
-#饼状图
+# 饼状图
 # pie=Pie('单个ip攻击饼状图','2021年')
 # # pie.add("sql注入",columns,data1,center=[25,50],is_legend_show=False)
 # pie.add("xss注入",columns,data2,center=[75,50],is_legend_show=False,is_label_show=True)
@@ -77,10 +77,12 @@
 
 
 # coding:utf-8
-from pyecharts import Geo
+# from pyecharts import Geo
+#
+# value = [20, 30, 40, 60, 70, 80, 90, 100, 10]
+# attr = ['荆州', '长沙', '渭南', '临汾', '十堰', '唐山', '郴州', '铜陵', '呼和浩特']
+# geo = Geo("全国各地ip来源", width=1200, height=600)
+# geo.add("攻击ip来源", attr, value, type="effectScatter", border_color="#ffffff", symbol_size=20,is_visualmap=True,visual_range=[0,100],symbol="pin",symbol_color="#FFD700")
+# geo.render()
 
-value = [20, 30, 40, 60, 70, 80, 90, 100, 10]
-attr = ['荆州', '长沙', '渭南', '临汾', '十堰', '唐山', '郴州', '铜陵', '呼和浩特']
-geo = Geo("全国各地ip来源", width=1200, height=600)
-geo.add("攻击ip来源", attr, value, type="effectScatter", border_color="#ffffff", symbol_size=20,is_visualmap=True,visual_range=[0,100],symbol="pin",symbol_color="#FFD700")
-geo.render()
+
