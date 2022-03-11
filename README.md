@@ -22,7 +22,8 @@
 
 2022-03-11 绘制进出口流量图表和流量攻击类型统计饼图，如下：
 
-![image](https://user-images.githubusercontent.com/78641812/157825740-8fa3cc2a-ed04-43ad-a1ea-8f288919b39f.png)
+![image](https://user-images.githubusercontent.com/78641812/157826576-add73af5-2999-46d9-b6ab-1896f8a794e7.png)
+
 
 
 
