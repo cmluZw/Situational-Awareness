@@ -18,4 +18,10 @@
 
 ![image](https://user-images.githubusercontent.com/78641812/153381904-08ac98da-94bc-4138-8ba4-d10d76e85290.png)
 
+2022-03-09 增加了流量分析代码，目前对http和https以及ddos攻击进行分析
+
+2022-03-11 绘制进出口流量图表，如下：
+
+![image](https://user-images.githubusercontent.com/78641812/157824597-79917023-4efe-47a5-bcab-7dc72bd5d242.png)
+
 
