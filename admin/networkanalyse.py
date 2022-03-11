@@ -6,6 +6,7 @@ from urllib.parse import unquote
 from scapy.all import *
 from model.network import Network
 import config
+import admin.ipanalyse as ipanalyse
 
 
 
@@ -87,8 +88,9 @@ def httpAnalyse(load, pkt):
             network.time=time
             network.raw_request=s
 
-            if network.attack_type != 100:
+            if network.attack_type != 100:#存在威胁
                 network.insert()
+                ipanalyse.seperate_ip(network.get_srcip())#分析来源ip
 
         except Exception as e:
             con = ctime() + ' ' + str(e)
@@ -122,6 +124,7 @@ def httpAnalyse(load, pkt):
 
             if network.attack_type != 100:
                 network.insert()
+                ipanalyse.seperate_ip(network.get_srcip())  # 分析来源ip
         except Exception as e:
             con = ctime() + ' ' + str(e)
             with open('./output/analyse/network/error_log.log', 'a+') as ef:
@@ -150,6 +153,7 @@ def flowanalyse(pkt):
             network.srcip=pkt['IP'].src
             network.attack_type=104
             network.time=time
+            network.insert()
     else:
         network.trafficOut += len(pkt)
     # 在整点时统计出入站流量
@@ -166,8 +170,7 @@ def flowanalyse(pkt):
         # print(network.trafficOut // config.stream_unit)
         network.all_time[check_time] = [
             network.trafficIn // config.stream_unit, network.trafficOut // config.stream_unit]
-
-        # print(network.all_time[check_time])
+        print(network.all_time[check_time])
         if check_time == '00:00':
             for otime in network.all_time:
                 if otime != '00:00':
@@ -177,7 +180,7 @@ def flowanalyse(pkt):
         # print(network.all_time)
         # with open('./output/stream_status.log', 'w') as f:
         #     f.write(network.all_time)
-        with open('../output/analyse/network/flowStatistics.txt', 'w') as f:
+        with open('../output/analyse/network/flowStatistics.txt', 'a') as f:
             f.write(json.dumps(network.all_time))
     if network.tmp_time == []:
         network.tmp_time = ['00:00', '01:00', '02:00', '03:00', '04:00', '05:00', '06:00', '07:00', '08:00',
@@ -189,4 +192,4 @@ def networkanalyse():
     # pkt = sniff(filter='ip dst {} and ip src {}'.format(config.local_ip, config.local_ip),prn=flowanalyse)
     pkt = sniff(filter='ip dst {} or ip src {}'.format(config.local_ip, config.local_ip),prn=flowanalyse)
 
-networkanalyse()
+# networkanalyse()

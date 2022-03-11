@@ -36,7 +36,7 @@ attackType = {
 process = ['apache', 'mysqld', 'vsftpd', 'sshd']
 
 
-local_ip = '10.13.235.191'
+local_ip = '39.105.132.34'
 local_adapter = 'wlp4s0'  #网卡名字可不指定
 local_coord = [-118.24368, 34.05223]
 local_city = 'Los Angeles'

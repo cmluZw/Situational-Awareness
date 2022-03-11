@@ -26,15 +26,15 @@ def apachePieCharts():
     ]
     data=[0,0,0,0,0]
     for i in range(length):#统计，将类型相同的num加在一起存入data
-        if int(type_list[i])==1:
+        if int(type_list[i])==101:
             data[0]=data[0]+int(num_list[i])
-        if int(type_list[i])==2:
+        if int(type_list[i])==102:
             data[1]=data[1]+int(num_list[i])
-        if int(type_list[i])==3:
+        if int(type_list[i])==103:
             data[2]=data[2]+int(num_list[i])
-        if int(type_list[i])==4:
+        if int(type_list[i])==104:
             data[3]=data[3]+int(num_list[i])
-        if int(type_list[i])==5:
+        if int(type_list[i])==105:
             data[4]=data[4]+int(num_list[i])
         # if int(type_list[i])==6:  #ssh爆破
         #     data[5]=data[5]+int(num_list[i])

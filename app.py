@@ -3,8 +3,8 @@ from threading import Thread
 
 from flask import Flask, request, render_template
 from flask_sqlalchemy import SQLAlchemy
-from admin import user,ipanalyse,sshanalyse,networkanalysedemo
-from charts import apacheCharts,earthMapCharts,sshCharts,networkCharts
+from admin import user,ipanalyse,sshanalyse,networkanalyse
+from charts import apacheCharts,earthMapCharts,sshCharts
 
 # 建立flask对象
 app = Flask(__name__)
@@ -19,8 +19,7 @@ db = SQLAlchemy(app)
 #     return 'Hello World!'
 
 
-netcap = networkanalysedemo.netCapture()
-ncap = Thread(target=netcap.capture)
+ncap = Thread(target=networkanalyse.networkanalyse)
 ncap.start()
 
 
