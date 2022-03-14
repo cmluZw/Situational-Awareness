@@ -24,6 +24,11 @@
 
 ![image](https://user-images.githubusercontent.com/78641812/157826576-add73af5-2999-46d9-b6ab-1896f8a794e7.png)
 
+2022-03-14 前端整理中，效果图暂时如下（还未完善左边）
+
+![image](https://user-images.githubusercontent.com/78641812/158146651-d441c5d8-3fc5-4db5-90c6-8cc2fd024a37.png)
+
+
 
 
 
