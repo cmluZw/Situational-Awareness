@@ -3,8 +3,8 @@ from threading import Thread
 
 from flask import Flask, request, render_template
 from flask_sqlalchemy import SQLAlchemy
-from admin import user,ipanalyse,sshanalyse,networkanalyse
-from charts import apacheCharts,earthMapCharts,sshCharts
+from admin import user,ipanalyse,sshanalyse,networkanalyse,processanalyse
+from charts import apacheCharts,earthMapCharts,sshCharts,networkCharts
 
 # 建立flask对象
 app = Flask(__name__)
@@ -51,6 +51,7 @@ def apache():
     sshanalyse.analyseByfile()
     return 'apache存入'
 
+
 #面板首页
 @app.route('/',methods=['GET','POST'])
 def index():
@@ -64,14 +65,20 @@ def index():
     # print(sshcharts_id)
     # stream_chart = networkCharts.stream_status(streams)
     # stream_id = stream_chart._chart_id
-
+    networkcharts=networkCharts.networkcharts()#饼状图
+    networkcharts_id=networkcharts.chart_id
+    streamcharts=networkCharts.streamcharts()
     return render_template('base.html',
                            apachecharts=apachecharts.render_embed(),
                            apache_id=apache_id,
                            earthmapcharts=earthmapcharts.render_embed(),
                            earthmap_id=earthmap_id,
                            sshcharts=sshcharts.render_embed(),
-                           sshcharts_id=sshcharts_id,)
+                           sshcharts_id=sshcharts_id,
+                           networkcharts=networkcharts.render_embed(),
+                           networkcharts_id=networkcharts_id,
+                           streamcharts=streamcharts.render_embed(),
+                           )
 
 
 if __name__ == '__main__':

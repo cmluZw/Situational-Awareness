@@ -42,13 +42,13 @@ def apachePieCharts():
         #     data[6]=data[6]+int(num_list[i])
     # for i in data:
     #     print(i)
-    pie=Pie('', width="100%", height="100%", title_pos="left",title_top=40, title_color="#6cb7c9")
-    # pie=Pie()
+    pie=Pie()
     # pie.add("apache日志分析统计",columns,data,center=[75,50],is_legend_show=False,is_label_show=True,radius = ["15%", "20%"])
-    pie.add("apache日志分析统计",columns,data,radius=[30, 38], label_text_color=None,
-               legend_orient='vertical', center=[50, 60], is_legend_show=False, is_toolbox_show=False,
-               is_label_show=False)
+    pie.add("apache日志分析统计",columns,data,radius=[28, 38], label_text_color=None,
+               legend_orient='vertical', center=[10, 20], is_legend_show=False, is_toolbox_show=False,
+               is_label_show=False,label_color=['#8080C0','#007979', '#97CBFF',  '#003E3E', '#2894FF'])
     # pie.render()
+
     pie.chart_id='apache_pie'
     return pie
 
