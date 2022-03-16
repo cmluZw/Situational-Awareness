@@ -45,7 +45,7 @@ def networkcharts():#存在威胁的ip已经放进世界地图里，这里统计
     pie = Pie()
     pie.add("流量分析统计", columns, data, radius=[28, 38], label_text_color=None,
             legend_orient='vertical', center=[10, 20], is_legend_show=False, is_toolbox_show=False,
-            is_label_show=False,label_color=['#8080C0','#007979', '#97CBFF',  '#2894FF'])
+            is_label_show=True,label_pos='center',label_color=['#8080C0','#007979', '#97CBFF',  '#2894FF'])
 
     # pie.render()#测试完成
     pie.chart_id = 'network_pie'

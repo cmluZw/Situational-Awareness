@@ -46,7 +46,7 @@ def apachePieCharts():
     # pie.add("apache日志分析统计",columns,data,center=[75,50],is_legend_show=False,is_label_show=True,radius = ["15%", "20%"])
     pie.add("apache日志分析统计",columns,data,radius=[28, 38], label_text_color=None,
                legend_orient='vertical', center=[10, 20], is_legend_show=False, is_toolbox_show=False,
-               is_label_show=False,label_color=['#8080C0','#007979', '#97CBFF',  '#003E3E', '#2894FF'])
+               is_label_show=True,label_pos='center',label_color=['#8080C0','#007979', '#97CBFF',  '#00E3E3', '#2894FF'])
     # pie.render()
 
     pie.chart_id='apache_pie'

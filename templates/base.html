@@ -32,26 +32,30 @@
 
 {#    进程监控#}
      <div id="service"
-         style="position: absolute; width: 15%; height: 35vh; margin-left: 83%; z-index: 10; margin-top: 10vh; ">
-        {{ service_chart | safe }}
+         style="position: absolute; width: 15%; height: 20vh; margin-left: 83%; z-index: 10; margin-top: 70vh; ">
+        {{ processcharts | safe }}
     </div>
         <div style="position: absolute; width: 30%; height: 20vh; margin-left: 84%; z-index: 10; margin-top:65vh; ">
         <span style="color:#FFD700">----服务运行状态----</span>
             <br>
             <table style="width: auto; height: 100%;color:#00FFFF; font-size: 14px; font-family: monospace; "
                align="left">
-            <tr><td>Apache</td></tr>
-            <tr><td>MySQL</td></tr>
-            <tr><td>SSH</td></tr>
-            <tr><td>FTP</td></tr>
+                <tr><td>FTP</td></tr>
+                <tr><td>SSH</td></tr>
+                <tr><td>MySQL</td></tr>
+                <tr><td>Apache</td></tr>
         </table>
 
     </div>
 
-        <!-- 展示ssh趋势 -->
-{#    <div>#}
-{#        {{ sshcharts | safe }}#}
-{#    </div>#}
+        <!-- 展示ssh图表 -->
+        <div style="position: absolute; margin-left: 6%; margin-top: 18vh; z-index: 10; ">
+       <span  style="color:#FFD700;font-size:35px"> {{ risk_index | safe }}</span>
+    </div>
+        <div style="position: absolute; width: 20%; height: 20vh; margin-right: 85%; margin-top: 5vh; z-index: 10;  ">
+        <span style="color:#FFD700";margin-left: 10%;>------ssh分析统计及风险指数------</span>
+         {{ sshcharts | safe }}
+    </div>
 
 </div>
 
