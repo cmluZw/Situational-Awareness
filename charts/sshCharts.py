@@ -29,7 +29,7 @@ def sshPieCharts():
     ssh_pie=Pie()
     ssh_pie.add("ssh爆破统计", ip_list, num_list, radius=[28, 38], label_text_color=None,
             legend_orient='vertical', center=[15, 25], is_legend_show=False, is_toolbox_show=False,
-            is_label_show=False,)
+            is_label_show=False,label_color=['#8080C0','#007979', '#97CBFF',  '#2894FF', '#E8FFC4','#CDCD9A','#C4E1E1','#4A4AFF','#2894FF','#AAAAFF','#4DFFFF','#9D9D9D'])
     # ssh_pie.render()
     ssh_sum=0
     for i in num_list:
