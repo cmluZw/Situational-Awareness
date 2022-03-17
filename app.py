@@ -4,7 +4,7 @@ from threading import Thread
 from flask import Flask, request, render_template
 from flask_sqlalchemy import SQLAlchemy
 from admin import user,ipanalyse,sshanalyse,networkanalyse,processanalyse
-from charts import apacheCharts,earthMapCharts,sshCharts,networkCharts,processCharts
+from charts import apacheCharts,earthMapCharts,sshCharts,networkCharts,processCharts,attackeventCharts
 
 # 建立flask对象
 app = Flask(__name__)
@@ -66,6 +66,8 @@ def index():
     networkcharts_id=networkcharts.chart_id
     streamcharts=networkCharts.streamcharts()
     processcharts=processCharts.processCharts()
+    ip_list,time_list,type_list=attackeventCharts.selectevent()
+    length=len(ip_list)
     return render_template('base.html',
                            apachecharts=apachecharts.render_embed(),
                            apache_id=apache_id,
@@ -78,6 +80,10 @@ def index():
                            streamcharts=streamcharts.render_embed(),
                            processcharts=processcharts.render_embed(),
                            risk_index=risk_index,
+                           ip_list=ip_list,
+                           time_list=time_list,
+                           type_list=type_list,
+                           length=length,
                            )
 
 

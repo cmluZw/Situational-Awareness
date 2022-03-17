@@ -10,8 +10,8 @@
 <body style="background-color: #1b1f23">
 
     <!-- 展示世界地图 -->
-    <div style="color:#FFD700;text-align:center" >
-        <span>-----------全球攻击ip流向统计图-----------</span>
+    <div style="color:#FFD700;text-align:center;font-size:20px" >
+        <span>全球攻击ip流向统计图</span>
     </div>
     <div id="world" style="position: absolute; width: 80%; height: 85vh; margin-left: 8%; margin-top: 5vh; ">
         {{ earthmapcharts | safe }}
@@ -60,14 +60,23 @@
     <!--展示事件-->
     <div style="position: absolute; width: 20%; height: 20vh; margin-right: 85%; margin-top: 35vh; z-index: 10;  ">
         <span style="color:#FFD700";margin-left: 10%;>-----------攻击事件显示-----------</span></div>
-    <div style="position: absolute; width: 20%; height: 40vh; margin-left: 0vh; margin-top: 40vh;  z-index: 10; overflow: scroll; overflow-x: hidden;">
+    <div style="position: absolute; width: 22%; height: 40vh; margin-left: 0vh; margin-top: 40vh;  z-index: 10; overflow: scroll; overflow-x: hidden;">
           <table  style="width: 100%; border: none; text-align: left; color: #FFD700;font-size: 14px;  table-layout: fixed; font-family: monospace;"
                cellpadding="0" cellspacing="0">
             <thead>
+            <tr>
                 <th style="width: 40%">IP</th>
-                <th style="width: 40%">目标</th>
                 <th style="width: 40%">类型</th>
+                <th style="width: 40%">时间</th>
+            </tr>
             </thead>
+              {% for i in range(0,length) %}
+                  <tr>
+                <td style="width: 40%;color:#007979">{{ ip_list[i] }}</td>
+                  <td style="width: 40%;color:#007979">{{ type_list[i] }}</td>
+                  <td style="width: 40%;color:#007979">{{ time_list[i] }}</td></tr>
+                  <br>
+            {% endfor %}
           </table>
     </div>
 <div style="position:relative;width: 100%; height: 100%">
