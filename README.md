@@ -32,7 +32,13 @@
 
 ![image](https://user-images.githubusercontent.com/78641812/158563462-2d6966e6-5431-42e2-aff0-88630c64a438.png)
 
+2022-03-17 前端整理完成，如下：
 
+![image](https://user-images.githubusercontent.com/78641812/158773590-d43a1b63-ecd8-4431-958f-240ad318d80d.png)
+
+
+
+整体效果动态如下：
 
 
 
