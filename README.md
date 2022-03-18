@@ -8,3 +8,7 @@
 所有的图表都采用pyecharts，运用flask+jinjia+mysql
 
 ![预览](https://user-images.githubusercontent.com/78641812/158774575-f78de118-586f-48b0-8db2-3baaa456b2d0.gif)
+
+## 支持
+
+如果觉得本项目对你有帮助，可以点个❤嘛~
