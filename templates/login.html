@@ -1,3 +1,14 @@
+
+
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <title>态势感知系统</title>
+    <script src="static/echarts/echarts.min.js"></script>
+    <script src="static/echarts/world.js"></script>
+    <script src="static/js/jquery-3.4.0.min.js"></script>
+</head>
+<body style="background-color: #1b1f23">
 {% extends "loginbase.html" %}
 {% block title %}python flask user page{% endblock %}
 {% block head %}
@@ -5,8 +16,11 @@
 {% endblock %}
 {% block content %}
     <form action="{{ url_for('login') }}" method="post">
+    {{ login_info }}
         账号：<input name="username" type="text"/><br/>
         密码：<input name="password" type="password"/><br/>
         <button type="submit">登录</button>
     </form>
 {% endblock %}
+</body>
+</html>

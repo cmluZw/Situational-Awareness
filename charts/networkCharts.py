@@ -74,4 +74,4 @@ def streamcharts(): #流量统计
     # grid.render()
     return grid
 
-streamcharts()
+# streamcharts()

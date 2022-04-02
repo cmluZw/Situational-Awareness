@@ -1,17 +1,17 @@
-# from pyecharts import Bar,Pie,Line,Radar
+from pyecharts import Bar,Pie,Line,Radar
 #
-#行名
-# columns=['sql注入','xss攻击','ddos攻击','口令爆破','目录遍历','webshell']
-#
-# #设置数据
-# data1=[208,20,100,809,123,42]
-# data2=[10,23,21,94,13,12]
-#
-# #设置主副标题
-# bar=Bar("web应用攻击柱状图","2021年")
-# bar.add("linux1",columns,data1,mark_line=["average"], mark_point=["max", "min"])
-# bar.add("linux2",columns,data2,mark_line=["average"], mark_point=["max", "min"])
-# bar.render()
+# 行名
+columns=['sql注入','xss攻击','ddos攻击','口令爆破','目录遍历','webshell']
+
+#设置数据
+data1=[208,20,100,809,123,42]
+data2=[10,23,21,94,13,12]
+
+#设置主副标题
+bar=Bar("web应用攻击柱状图","2021年")
+bar.add("linux1",columns,data1,mark_line=["average"], mark_point=["max", "min"])
+bar.add("linux2",columns,data2,mark_line=["average"], mark_point=["max", "min"])
+bar.render()
 
 # 饼状图
 # pie=Pie('单个ip攻击饼状图','2021年')

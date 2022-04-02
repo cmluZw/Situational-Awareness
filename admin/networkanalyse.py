@@ -180,7 +180,7 @@ def flowanalyse(pkt):
         # print(network.all_time)
         # with open('./output/stream_status.log', 'w') as f:
         #     f.write(network.all_time)
-        with open('../output/analyse/network/flowStatistics.txt', 'a') as f:
+        with open('./output/analyse/network/flowStatistics.txt', 'a') as f:
             f.write(json.dumps(network.all_time))
     if network.tmp_time == []:
         network.tmp_time = ['00:00', '01:00', '02:00', '03:00', '04:00', '05:00', '06:00', '07:00', '08:00',

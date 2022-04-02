@@ -1,7 +1,7 @@
 # -*- coding:utf-8 -*-
 from threading import Thread
 
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from admin import user,ipanalyse,sshanalyse,networkanalyse,processanalyse
 from charts import apacheCharts,earthMapCharts,sshCharts,networkCharts,processCharts,attackeventCharts
@@ -23,19 +23,23 @@ ncap = Thread(target=networkanalyse.networkanalyse)
 ncap.start()
 
 
-#登录面板
+# 登录面板
 @app.route('/login',methods=['GET','POST'])
 def login():
     if request.method == 'POST':
         username= request.form['username']
         password= request.form['password']
         info=user.check(str(username),str(password))
-        return info
+        if info=='登录成功':
+            return redirect(url_for('index'))
+        else:
+            return render_template('login.html',login_info='账号或密码错误')
     else:
         return render_template('login.html')
 
 #分析ip，结果存入数据库
 @app.route('/ip',methods=['GET'])
+
 def localbyip():
     ip=request.args.get('ip')
     ipanalyse.seperate_ip(ip)
@@ -51,9 +55,13 @@ def apache():
     sshanalyse.analyseByfile()
     return 'apache存入'
 
+#系统设置
+@app.route('/config',methods=['GET'])
+def config():
+    return 'dd'
 
 #面板首页
-@app.route('/',methods=['GET','POST'])
+@app.route('/index',methods=['GET','POST'])
 def index():
     #图表绘制
     apachecharts=apacheCharts.apachePieCharts()
