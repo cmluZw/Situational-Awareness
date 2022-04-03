@@ -1,6 +1,6 @@
 import json
 
-from pyecharts import Line,Pie,Grid
+from pyecharts import Line,Pie,Grid,Gauge
 from model.ssh import Ssh
 import admin.ipanalyse as ipanalyse
 
@@ -25,7 +25,7 @@ def selectssh():
 
 def sshPieCharts():
     ip_list, num_list = selectssh()
-    grid = Grid(width="100%", height="100%")
+    grid = Grid(width="250px", height="250px")
     ssh_pie=Pie()
     ssh_pie.add("ssh爆破统计", ip_list, num_list, radius=[28, 38], label_text_color=None,
             legend_orient='vertical', center=[15, 25], is_legend_show=False, is_toolbox_show=False,
@@ -43,6 +43,11 @@ def sshPieCharts():
             stream_in+=v[0]
         # print(stream_in)
     risk=ssh_sum/stream_in
+    # risk_index_pannel='{:.2f}'.format(risk*100)
     risk_index='{:.0%}'.format(risk)
+    # gauge = Gauge()
+    # gauge.add("", "", risk_index_pannel,is_toolbox_show=False,radius="50%")
+    # # gauge.show_config()
+    # grid.add(gauge,grid_top="10px")
     return ssh_pie,risk_index
 # sshPieCharts()

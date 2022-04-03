@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh">
+    <title>态势感知系统</title>
+    <script src="static/echarts/echarts.min.js"></script>
+    <script src="static/echarts/world.js"></script>
+    <script src="static/js/jquery-3.4.0.min.js"></script>
+</head>
+
+
+<body style="background: #1b1f23">
+
+{#图表展示#}
+        <div>
+         {{ ipcountry_pie | safe }}
+    </div>
+{#ip全部展示#}
+     <div style="position: absolute; height: 50%;margin-top:5vh; z-index: 10;  ">
+          <table  style="width: 100%; border: none; text-align: left; color: #FFD700;font-size: 14px;  table-layout: fixed; font-family: monospace;"
+               cellpadding="0" cellspacing="0">
+            <thead>
+            <tr>
+                <th style="width: 15%">IP</th>
+                <th style="width: 15%">国家</th>
+                <th style="width: 15%">城市</th>
+                <th style="width: 15%">时间</th>
+                <th style="width: 15%">原始数据</th>
+            </tr>
+            </thead>
+              {% for i in range(0,length) %}
+                  <tr>
+                <td style="color:#007979">{{ ip_list[i] }}</td>
+                  <td style="color:#007979">{{ country_name[i] }}</td>
+                  <td style="color:#007979">{% if country_specificname[i]!=None %}
+                      {{ country_specificname[i] }}
+                      {% else %}
+                      {{  city_name[i] }}
+                      {% endif %}
+                  </td>
+                  <td style="color:#007979">{{ time[i] }}</td>
+                  <td>
+                      <form action="{{ url_for('get_raw_data') }}" method="post">
+                          <input type="hidden" name="ip" value="{{ip_list[i]}}"/>
+                      <button type="submit">原始数据</button>
+                  </form>
+                  </td>
+                  </tr>
+                  <br>
+            {% endfor %}
+          </table>
+    </div>
+</div>
+
+<div>
+           <form action="{{ url_for('ip_manage') }}" method="post" >
+           <input type="text" name="search" class="text" placeholder="输入关键字搜索" />
+           <button type="submit">搜索</button>
+       </form>
+   </div>
+
+</body>
+
+
+</html>

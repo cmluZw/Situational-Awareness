@@ -1,26 +1,61 @@
-
-
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="en">
 <head>
-    <title>态势感知系统</title>
-    <script src="static/echarts/echarts.min.js"></script>
-    <script src="static/echarts/world.js"></script>
-    <script src="static/js/jquery-3.4.0.min.js"></script>
+    <meta charset="UTF-8">
+    <title>登录——态势感知系统</title>
+    <link rel="stylesheet" href="static/css/index.css">
+    <script type="text/javascript" src="static/js/jquery.js"></script>
 </head>
-<body style="background-color: #1b1f23">
-{% extends "loginbase.html" %}
-{% block title %}python flask user page{% endblock %}
-{% block head %}
-    <style type="text/css"></style>
-{% endblock %}
-{% block content %}
-    <form action="{{ url_for('login') }}" method="post">
-    {{ login_info }}
-        账号：<input name="username" type="text"/><br/>
-        密码：<input name="password" type="password"/><br/>
-        <button type="submit">登录</button>
-    </form>
-{% endblock %}
+<body>
+<script>
+
+    $(document).ready(function () {
+        var whei = $(window).width()
+        $("html").css({ fontSize: whei / 24 });
+        $(window).resize(function () {
+            var whei = $(window).width();
+            $("html").css({ fontSize: whei / 24 })
+        });
+    });
+</script>
+<div class="main">
+
+    <div class="header">
+        <div class="header-center fl">
+            <div class="header-title">
+                态势感知系统
+            </div>
+            <div class="header-img"></div>
+        </div>
+        <div class="header-bottom fl"></div>
+
+    </div>
+
+    <div class="content">
+        <div class="content-left">
+        </div>
+        <div class="content-right">
+            <div class="right-infp">
+                <form action="{{ url_for('login') }}" method="post">
+                    {{ login_info }}
+                <div class="right-infp-name">
+                    <input type="text" name="username" placeholder="请输入用户名" maxlength="12" required="" value="" autocomplete="off">
+                </div>
+                <div class="right-infp-name">
+                    <input type="text" name="password" placeholder="请输入密码" autocomplete="off">
+                </div>
+
+                <div class="right-infp-btn">
+                    <button class="btn">登录</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+
 </body>
 </html>

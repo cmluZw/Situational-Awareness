@@ -69,3 +69,9 @@ class Ip(db.Model):
         db.session.add(self)
         db.session.commit()
 
+    def Statisticsip(self):
+        sql = "SELECT country_name AS 'country_name',COUNT(ip) AS 'num' FROM attack_ip GROUP BY country_name"
+        data = db.session.execute(sql)
+        data_list=data.fetchall()
+        # print(data.fetchall())
+        return data_list

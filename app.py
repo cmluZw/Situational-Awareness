@@ -5,6 +5,9 @@ from flask import Flask, request, render_template, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from admin import user,ipanalyse,sshanalyse,networkanalyse,processanalyse
 from charts import apacheCharts,earthMapCharts,sshCharts,networkCharts,processCharts,attackeventCharts
+from charts.manage import ip_manageCharts
+from admin.manage import ip_manage
+
 
 # 建立flask对象
 app = Flask(__name__)
@@ -33,12 +36,45 @@ def login():
         if info=='登录成功':
             return redirect(url_for('index'))
         else:
-            return render_template('login.html',login_info='账号或密码错误')
+            return render_template('login.html', login_info='账号或密码错误')
     else:
         return render_template('login.html')
 
-#分析ip，结果存入数据库
-@app.route('/ip',methods=['GET'])
+
+#ip管理
+@app.route('/ip_manage',methods=['GET','POST'])
+def ip_manage():
+
+    if request.method == 'POST':
+        search = request.form['search']
+        addwhite = request.form['addwhite']
+    else:
+        search=0
+        addwhite=0
+
+    if search:
+        length, ip_list, country_name, country_specificname, city_name, time = ip_manageCharts.ip_searchCharts(search)
+    else:
+        length,ip_list,country_name,country_specificname,city_name,time=ip_manageCharts.selectalllistCharts()
+    ipcountry_pie = ip_manageCharts.selectby_countryCharts()
+    return render_template('manage/ipmanage.html',
+                           ipcountry_pie=ipcountry_pie.render_embed(),
+                           length=length,
+                           ip_list=ip_list,
+                           country_name=country_name,
+                           country_specificname=country_specificname,
+                           city_name=city_name,
+                           time=time,
+                           addwhite=addwhite,
+                           )
+
+
+
+#原始数据
+@app.route('/get_raw_data',methods=['GET','POST'])
+def get_raw_data():
+    ip = request.form['ip']
+    return ip
 
 def localbyip():
     ip=request.args.get('ip')
@@ -83,6 +119,7 @@ def index():
                            earthmap_id=earthmap_id,
                            sshcharts=sshcharts.render_embed(),
                            sshcharts_id=sshcharts_id,
+                           # gauge=gauge.render_embed(),
                            networkcharts=networkcharts.render_embed(),
                            networkcharts_id=networkcharts_id,
                            streamcharts=streamcharts.render_embed(),

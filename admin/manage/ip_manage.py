@@ -5,6 +5,8 @@ from model.ip import Ip
 from model.network import Network
 from model.ssh import Ssh
 import admin.ipanalyse as ipanalyse
+import re
+
 
 '''写ip管理'''
 
@@ -38,9 +40,31 @@ def ip_analyse():
     for i in network_ip_list:
         ipanalyse.seperate_ip(i.split('\n')[0])
 
+
+def ip_search(x):
+    ip = Ip()
+    is_ip=re.search(r'(([01]{0,1}\d{0,1}\d|2[0-4]\d|25[0-5])\.){3}([01]{0,1}\d{0,1}\d|2[0-4]\d|25[0-5])', x)
+    if is_ip:
+        list = ip.query.filter_by(ip=x).all()
+    else:
+        list = ip.query.filter_by(country_name=x).all()
+        if len(list)==0:
+            list = ip.query.filter_by(country_specificname=x).all()
+            if len(list) == 0:
+                list = ip.query.filter_by(city_name=x).all()
+    return list
+
+# ip_search("1.180.72.24")
+
+
 def selectbycountry(country_name):
     ip=Ip()
     list = ip.query.filter_by(country_name=country_name).all()
+    return list
+
+def selectbyip(ip):
+    ip=Ip()
+    list = ip.query.filter_by(ip=ip).all()
     return list
 
 def selectbycity(city_name):
@@ -50,4 +74,17 @@ def selectbycity(city_name):
         list = ip.query.filter_by(city_name=city_name).all()
     return list
 
+def Statisticsip():
+    ip = Ip()
+    list=ip.Statisticsip()
+    country_name_list,num_list=[],[]
+    for i in list:
+        country_name_list.append(i.country_name)
+        num_list.append(i.num)
+    return country_name_list,num_list
 
+
+def selectall():
+    ip = Ip()
+    all_list=ip.query.all()
+    return all_list
