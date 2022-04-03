@@ -36,8 +36,16 @@
 
 ![image](https://user-images.githubusercontent.com/78641812/158773590-d43a1b63-ecd8-4431-958f-240ad318d80d.png)
 
-2022-4-02  开始大改：
+2022-4-03 新增登录界面，修复任意用户登录的bug
 
+![image](https://user-images.githubusercontent.com/78641812/161430621-4e3c5ba7-e996-403b-8bd2-71e9912467a2.png)
+
+
+未完善功能：
+1.告警
+2.ip管理
+3.原始数据管理
+4.整体样式调节
 
 
 
