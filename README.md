@@ -41,13 +41,25 @@
 ![image](https://user-images.githubusercontent.com/78641812/161430621-4e3c5ba7-e996-403b-8bd2-71e9912467a2.png)
 
 
-未完善功能：
-1.告警
-2.ip管理
-3.原始数据管理
-4.整体样式调节
+2022-4-08 
+后端新增功能
+1.ip管理
+
+![image](https://user-images.githubusercontent.com/78641812/162403115-8d5dc0b8-edcf-417c-b997-162183747194.png)
+
+2.自动告警，通过发送邮箱实现自动告警，基本功能实现，但是不完全自动，正在修改。
+
+3.原始数据查看
+后端算法已上传，前端未写
 
 
+前端修改：
+增加菜单：
+![image](https://user-images.githubusercontent.com/78641812/162403401-61476bd0-8a89-4a8a-bb6a-89e1a20006d1.png)
+
+![image](https://user-images.githubusercontent.com/78641812/162403424-bbae7ccf-f054-49ba-8f1a-57123e9c2956.png)
+
+整体样式未调整
 
 
 
