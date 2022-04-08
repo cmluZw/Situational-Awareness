@@ -1,18 +1,42 @@
 import json
-from pyecharts import Pie,Map
+from pyecharts import Pie,Grid,Bar,Scatter,Line,EffectScatter
 import admin.manage.ip_manage as ip_manage
 
 def selectby_countryCharts():
     country_name_list,num_list=ip_manage.Statisticsip()
     ipcountry_pie = Pie()
-    ipcountry_pie.add("ip来源国家统计", country_name_list, num_list, radius=[28, 38], label_text_color=None,
-                legend_orient='vertical', center=[15, 25], is_legend_show=False, is_toolbox_show=False,
-                is_label_show=False,
+    ipcountry_pie.add("ip来源国家统计", country_name_list, num_list, label_text_color=None,
+                legend_orient='vertical',  is_legend_show=False, is_toolbox_show=False,
+                is_label_show=True,
                 label_color=['#8080C0', '#007979', '#97CBFF', '#2894FF', '#E8FFC4', '#CDCD9A', '#C4E1E1', '#4A4AFF',
                              '#2894FF', '#AAAAFF', '#4DFFFF', '#9D9D9D'])
-    return ipcountry_pie
+    # ipcountry_pie.render()
+    foreign_num=0
+    for i in num_list:
+        foreign_num=foreign_num+1
 
-# selectby_countryCharts()
+    return ipcountry_pie,foreign_num
+
+def selectby_chinacityCharts():
+    city_name_list,num_list=ip_manage.StatisticsipChina()
+    ipcity_pie = Pie()
+    ipcity_pie.add("中国ip来源城市统计", city_name_list, num_list, label_text_color=None,
+                legend_orient='vertical', is_legend_show=False, is_toolbox_show=False,
+                is_label_show=True,
+                label_color=['#8080C0', '#007979', '#97CBFF', '#2894FF', '#E8FFC4', '#CDCD9A', '#C4E1E1', '#4A4AFF',
+                             '#2894FF', '#AAAAFF', '#4DFFFF', '#9D9D9D'],
+                   legend_top="50%",
+                   legend_pos="20%",
+                   )
+    china_num=0
+    for i in num_list:
+        china_num=china_num+1
+
+    return ipcity_pie,china_num
+    # ipcity_pie.render()
+
+
+
 
 def selectalllistCharts():
     all_list=ip_manage.selectall()

@@ -1,0 +1,8 @@
+flask==2.0.3
+charts==0.4.6
+pyecharts==0.5.11
+sqlalchemy==1.4.34
+geoip2==4.5.0
+scapy==2.4.5
+psutil==5.9.0
+pymysql==1.0.2

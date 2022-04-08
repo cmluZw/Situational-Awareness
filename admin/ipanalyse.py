@@ -22,7 +22,6 @@ reader = geoip2.database.Reader(r'D:\bishe\Situational-Awareness\libs\GeoLite2-C
 def ip_get_location(ip_address):
     # 载入指定IP相关数据
     response = reader.city(ip_address)
-
     # 读取国家代码
     Country_IsoCode = response.country.iso_code
     # 读取国家名称

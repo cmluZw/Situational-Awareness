@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="{{ url_for('install') }}" method="post">
+
+    <input type="text" name="username" placeholder="请输入管理员用户名" maxlength="12" required="" value="" autocomplete="off">
+   <br>
+    <input type="text" name="password" placeholder="请输入管理员密码" autocomplete="off">
+    <br>
+    <input type="password" name="repassword" placeholder="确认密码">
+   <br>
+    <input type="text" name="dbhost" placeholder="请输入数据库地址">
+      <br>
+        <input type="text" name="dbusername" placeholder="请输入数据库用户">
+    <br>
+    <input type="text" name="dbpassword" placeholder="请输入数据库密码">
+    <br>
+    <input type="text" name="db" placeholder="请输入数据库库名">
+    <br>
+    <input type="text" name="dbport" placeholder="请输入数据库端口">
+    <br>
+    <button type="submit">提交</button>
+</form>
+
+</body>
+</html>

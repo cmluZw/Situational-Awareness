@@ -1,0 +1,1 @@
+from admin.manage import dangerous_manage

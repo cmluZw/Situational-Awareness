@@ -1,4 +1,6 @@
 from pyecharts import GeoLines, Style
+
+import config
 from model.ip import Ip
 
 
@@ -54,7 +56,8 @@ style_geo = style.add(
 )
 
 def earthMap():
-    local_city="Chengdu"
+    # local_city="Beijing"
+    local_city=config.local_city
     ip_list, city_list, weidu_list, jindu_list, country_list = selectip()
     # print(ip_list,city_list,weidu_list,jindu_list,country_list)
     world=GeoLines('', **style.init_style)

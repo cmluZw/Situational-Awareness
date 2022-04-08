@@ -5,13 +5,19 @@ from model.network import Network
 
 def timehandle(time1):
     # 先转换为时间数组
-    timeArray = time.strptime(time1, "%Y-%m-%d %H:%M:%S")
-    # 转换为时间戳
-    otherStyleTime = time.strftime("%H:%M:%S", timeArray)
-    print(otherStyleTime)
-    return otherStyleTime
+    try:
+        timeArray = time.strptime(time1, "%Y-%m-%d %H:%M:%S")
+        # 转换为时间戳
+        otherStyleTime = time.strftime("%H:%M:%S", timeArray)
+        print(otherStyleTime)
+        return otherStyleTime
+    except:
+        otherStyleTime = time.strftime("%H:%M:%S", time.localtime())
+        # print(otherStyleTime)
+        return otherStyleTime
 
-# timehandle("2022-02-10 11:57:04")
+
+# timehandle('0')
 
 def selectevent():
     apache=Apache()

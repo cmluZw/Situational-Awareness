@@ -75,3 +75,9 @@ class Network(db.Model):
     def insert(self):
         db.session.add(self)
         db.session.commit()
+    def selectbyip(self):
+        sql="SELECT raw_request from network where srcip='{}'".format(self.srcip)
+        data = db.session.execute(sql)
+        data_list=data.fetchall()
+        # print(data.fetchall())
+        return data_list

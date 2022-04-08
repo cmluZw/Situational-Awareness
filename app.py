@@ -3,10 +3,12 @@ from threading import Thread
 
 from flask import Flask, request, render_template, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
-from admin import user,ipanalyse,sshanalyse,networkanalyse,processanalyse
+from admin import user,ipanalyse,sshanalyse,networkanalyse,processanalyse,apacheanalyse
 from charts import apacheCharts,earthMapCharts,sshCharts,networkCharts,processCharts,attackeventCharts
 from charts.manage import ip_manageCharts
-from admin.manage import ip_manage
+from admin.manage import ip_manage,event_manage
+from flask_mail import Mail,Message
+from admin.manage import dangerous_manage
 
 
 # 建立flask对象
@@ -15,7 +17,6 @@ app = Flask(__name__)
 app.config.from_pyfile('config.py')
 # 创建数据库对象
 db = SQLAlchemy(app)
-
 # #面板首页
 # @app.route('/',methods=['GET','POST'])
 # def index():
@@ -25,6 +26,12 @@ db = SQLAlchemy(app)
 ncap = Thread(target=networkanalyse.networkanalyse)
 ncap.start()
 
+# 初始化
+# @app.route('/',methods=['GET','POST'])
+# def init():
+#     sshanalyse.analyseByfile()
+#     apacheanalyse.apacheanalyse()
+#     return redirect(url_for('login'))
 
 # 登录面板
 @app.route('/login',methods=['GET','POST'])
@@ -32,6 +39,7 @@ def login():
     if request.method == 'POST':
         username= request.form['username']
         password= request.form['password']
+
         info=user.check(str(username),str(password))
         if info=='登录成功':
             return redirect(url_for('index'))
@@ -39,7 +47,6 @@ def login():
             return render_template('login.html', login_info='账号或密码错误')
     else:
         return render_template('login.html')
-
 
 #ip管理
 @app.route('/ip_manage',methods=['GET','POST'])
@@ -56,9 +63,13 @@ def ip_manage():
         length, ip_list, country_name, country_specificname, city_name, time = ip_manageCharts.ip_searchCharts(search)
     else:
         length,ip_list,country_name,country_specificname,city_name,time=ip_manageCharts.selectalllistCharts()
-    ipcountry_pie = ip_manageCharts.selectby_countryCharts()
+    ipcountry_pie,foreign_num = ip_manageCharts.selectby_countryCharts()
+    ipcity_pie,china_num=ip_manageCharts.selectby_chinacityCharts()
     return render_template('manage/ipmanage.html',
                            ipcountry_pie=ipcountry_pie.render_embed(),
+                           ipcity_pie=ipcity_pie.render_embed(),
+                           foreign_num=foreign_num,
+                           china_num=china_num,
                            length=length,
                            ip_list=ip_list,
                            country_name=country_name,
@@ -69,13 +80,39 @@ def ip_manage():
                            )
 
 
+# 发送邮箱，用于告警
+mail = Mail(app)
+@app.route('/sendEmail')
+def sendEmail():
+    msg = Message(subject='服务器遭受攻击',sender='1551505032@qq.com',recipients=['2534395766@qq.com'])
+    msg.body = '您的服务器正遭受攻击，请前往态势感知系统查看！！'
+    msg.html = '<b>您的服务器正遭受攻击，请前往态势感知系统查看！！</b> '
+    mail.send(msg)
+    return '邮件发送成功'
+
+
+
+@app.route('/test',methods=['GET','POST'])
+def testhtml():
+    return render_template("test.html")
+
 
 #原始数据
 @app.route('/get_raw_data',methods=['GET','POST'])
 def get_raw_data():
     ip = request.form['ip']
+    apache_raw,ssh_raw,network_raw=event_manage.getraw_data(ip)
+    print(apache_raw,ssh_raw,network_raw)
     return ip
 
+@app.route('/danger',methods=['GET','POST'])
+def danger():
+    result=dangerous_manage.check()
+    if result:
+        return redirect(url_for('sendEmail'))
+    return 0
+
+@app.route('/ip',methods=['GET'])
 def localbyip():
     ip=request.args.get('ip')
     ipanalyse.seperate_ip(ip)
@@ -88,7 +125,7 @@ def ssh():
 
 @app.route('/apache',methods=['GET'])
 def apache():
-    sshanalyse.analyseByfile()
+    apacheanalyse.apacheanalyse()
     return 'apache存入'
 
 #系统设置

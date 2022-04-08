@@ -75,3 +75,9 @@ class Ip(db.Model):
         data_list=data.fetchall()
         # print(data.fetchall())
         return data_list
+    def StatisticsipChina(self):
+        sql="SELECT country_specificname AS 'city_name',COUNT(ip) AS 'num' FROM attack_ip where country_name='China' GROUP BY country_specificname"
+        data = db.session.execute(sql)
+        data_list=data.fetchall()
+        # print(data.fetchall())
+        return data_list

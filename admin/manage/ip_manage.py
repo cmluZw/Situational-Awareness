@@ -84,6 +84,15 @@ def Statisticsip():
     return country_name_list,num_list
 
 
+def StatisticsipChina():
+    ip = Ip()
+    list=ip.StatisticsipChina()
+    country_name_list,num_list=[],[]
+    for i in list:
+        country_name_list.append(i.city_name)
+        num_list.append(i.num)
+    return country_name_list,num_list
+
 def selectall():
     ip = Ip()
     all_list=ip.query.all()

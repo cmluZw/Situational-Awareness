@@ -7,8 +7,7 @@ from scapy.all import *
 from model.network import Network
 import config
 import admin.ipanalyse as ipanalyse
-
-
+from model.raw_data import Raw_data
 
 
 def evilAnalyse(args):

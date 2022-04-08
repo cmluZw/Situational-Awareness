@@ -5,14 +5,29 @@
     <script src="static/echarts/echarts.min.js"></script>
     <script src="static/echarts/world.js"></script>
     <script src="static/js/jquery-3.4.0.min.js"></script>
-</head>
+        <link rel="stylesheet" href="static/css/reset.min.css">
+    <link rel="stylesheet" href="static/css/style.css">
+  </head>
 
 <body style="background: #1b1f23">
+{#下拉菜单#}
+    <header>
+        <button class="toggle-nav">
+            <span>></span>
+        </button>
+        <ul class="nav">
+            <li class="loud"><a href="/index">Home</a></li>
+            <li class="loud"><a href="/ip_manage">IP Manage</a></li>
+            <li class="loud"><a href="/index">System Manage</a></li>
+            <li class="loud"><a href="/index">Raw Data</a></li>
+            <li class="loud"><p>欢迎您：admin</p></li>
+        </ul>
+    </header>
+    <script src='static/js/jquery.min.js'></script>
+    <script src="static/js/script.js"></script>
 
-    <!-- 展示世界地图 -->
-    <div style="color:#FFD700;text-align:center;font-size:20px" >
-        <span>全球攻击ip流向统计图</span>
-    </div>
+
+<!-- 展示世界地图 -->
     <div id="world" style="position: absolute; width: 80%; height: 85vh; margin-left: 8%; margin-top: 5vh; ">
         {{ earthmapcharts | safe }}
     </div>
@@ -20,7 +35,7 @@
 {#    展示apache分析图表#}
 
     <div style="position: absolute; width: 20%; height: 20vh; margin-left: 85%; margin-top: 5vh; z-index: 10;  ">
-    <span style="color:#FFD700">----apache分析统计----</span>
+    <span style="color:#FFD700">----中间件分析统计----</span>
         {{ apachecharts | safe }}
     </div>
 {#展示流量分析图表#}
