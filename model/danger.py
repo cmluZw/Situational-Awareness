@@ -45,3 +45,16 @@ class Danger(db.Model):
     def insert(self):
         db.session.add(self)
         db.session.commit()
+
+    def selectbyip(self):
+        sql="SELECT is_deal from danger where ip='{}'".format(self.ip)
+        data = db.session.execute(sql)
+        data_list=data.fetchall()
+        # print(data.fetchall())
+        return data_list
+    def deal(self):
+        sql="update danger set is_deal=1 where ip='{}'".format(self.ip)
+        data = db.session.execute(sql)
+        return data
+
+

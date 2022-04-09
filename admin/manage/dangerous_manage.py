@@ -1,4 +1,4 @@
-'''写告警程序'''
+'''写告警程序+防御'''
 import os
 from time import strftime
 
@@ -76,17 +76,59 @@ def check():
     danger_index = danger_index1 if danger_index1==0 else danger_index2
     danger_list=danger_list1+danger_list2
     if danger_index:
-        for i in danger_list:
+        # for i in danger_list:
+        #     danger=Danger()
+        #     danger.ip=i
+        #     danger.time=strftime("%H:%M:%S")
+        #     danger.insert()
+        return danger_list
+    else:
+        return 0
+
+# def danger():
+#     check()
+
+
+def dealdanger(ip):
+    danger=Danger()
+    danger.ip=ip
+    try:
+        data=danger.deal()
+    except:
+        data=0
+    print(data)
+    return data
+
+def getis_deal(ip):
+    danger=Danger()
+    danger.ip=ip
+    danger_index=0
+    try:
+        is_deal_list=danger.selectbyip()
+        for i in is_deal_list:
+            if i.is_deal==1:
+                danger_index=1
+            else:
+                pass
+    except:
+        danger_index=0
+    print(danger_index)
+    return danger_index
+
+
+def danger():
+    danger_list=check()
+
+    for i in danger_list:
+        danger_index = getis_deal(i)
+        if danger_index:#已经被处理
+            pass
+        else:
             danger=Danger()
             danger.ip=i
             danger.time=strftime("%H:%M:%S")
             danger.insert()
-    else:
-        return 0
 
-
-
-check()
 
 
 
