@@ -4,6 +4,13 @@ SQLALCHEMY_ECHO = False
 SQLALCHEMY_TRACK_MODIFICATIONS=True
 SQLALCHEMY_DATABASE_URI='mysql+pymysql://root:123456789@127.0.0.1:3306/situational?charset=utf8'
 
+#邮箱设定
+MAIL_SERVER = 'smtp.qq.com'
+MAIL_PORT= 587
+MAIL_USE_TLS = True
+MAIL_USERNAME = '1551505032@qq.com'
+MAIL_PASSWORD = 'zmybnrktcjghfhbe'
+
 
 # Web日志路径
 apache_log = '/var/log/apache2/access.log'
@@ -39,7 +46,7 @@ process = ['apache', 'mysqld', 'vsftpd', 'sshd']
 local_ip = '39.105.132.34'
 local_adapter = 'wlp4s0'  #网卡名字可不指定
 local_coord = [-118.24368, 34.05223]
-local_city = 'Los Angeles'
+local_city = 'Shanghai'
 
 
 # 流量统计单位

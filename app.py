@@ -79,12 +79,11 @@ def ip_manage():
                            addwhite=addwhite,
                            )
 
-
 # 发送邮箱，用于告警
 mail = Mail(app)
 @app.route('/sendEmail')
 def sendEmail():
-    msg = Message(subject='服务器遭受攻击',sender='sender@qq.com',recipients=['接受者@qq.com'])
+    msg = Message(subject='服务器遭受攻击',sender='1551505032@qq.com',recipients=['2534395766@qq.com'])
     msg.body = '您的服务器正遭受攻击，请前往态势感知系统查看！！'
     msg.html = '<b>您的服务器正遭受攻击，请前往态势感知系统查看！！</b> '
     mail.send(msg)
@@ -105,12 +104,12 @@ def get_raw_data():
     print(apache_raw,ssh_raw,network_raw)
     return ip
 
-@app.route('/danger',methods=['GET','POST'])
-def danger():
-    result=dangerous_manage.check()
-    if result:
-        return redirect(url_for('sendEmail'))
-    return 0
+# @app.route('/danger',methods=['GET','POST'])
+# def danger():
+#     result=dangerous_manage.check()
+#     if result:
+#         return redirect(url_for('sendEmail'))
+#     return 0
 
 @app.route('/ip',methods=['GET'])
 def localbyip():
