@@ -6,3 +6,4 @@ geoip2==4.5.0
 scapy==2.4.5
 psutil==5.9.0
 pymysql==1.0.2
+Jinja2==3.0.1
