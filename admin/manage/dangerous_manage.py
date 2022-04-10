@@ -124,6 +124,7 @@ def danger():
         if danger_index:#已经被处理
             pass
         else:
+            print("自动防御存储中....")
             danger=Danger()
             danger.ip=i
             danger.time=strftime("%H:%M:%S")

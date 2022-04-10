@@ -3,6 +3,8 @@ from time import strftime
 from admin.manage import dangerous_manage
 from model.danger import Danger
 from admin.manage import defend
+from pyecharts import Bar, Grid, Page, Line
+
 
 def selectdanger():
     danger=Danger()
@@ -33,6 +35,29 @@ def dealdanger():#防御
         else:
             pass
 
+def dangerBarCharts():
+    danger=Danger()
+    data_list=danger.isdealStatistics()
+    # 成功防御
+    is_deal_ip_list,is_deal_num_ip,not_deal_ip_list,not_deal_num_ip=[],[],[],[]
+    for i in data_list:
+        is_deal_ip_list.append(i.ip)
+        is_deal_num_ip.append(i.num)
+    print(is_deal_ip_list,is_deal_num_ip)
 
-
+    # 防御失败
+    not_data_list=danger.notdealStatistics()
+    for i in not_data_list:
+        not_deal_ip_list.append(i.ip)
+        not_deal_num_ip.append(i.num)
+    print(not_deal_ip_list,not_deal_num_ip)
+    bar = Bar("")
+    page = Page()
+    bar.add("防御成功", is_deal_ip_list, is_deal_num_ip, is_label_show=False,is_legend_show=False, is_toolbox_show=False,is_xaxis_show=False,is_yaxis_show= False,label_color=['#007979'])
+    bar.add("防御失败", not_deal_ip_list, not_deal_num_ip,is_label_show=False,is_legend_show=False, is_toolbox_show=False,is_xaxis_show=False,is_yaxis_show= False,label_color=['#CDCD9A'])
+    # bar.render()
+    #
+    # return page
+    return bar
+# dangerBarCharts()
 # dealdanger()

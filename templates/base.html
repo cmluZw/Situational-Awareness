@@ -19,7 +19,6 @@
             <li class="loud"><a href="/index">Home</a></li>
             <li class="loud"><a href="/ip_manage">IP Manage</a></li>
             <li class="loud"><a href="/index">System Manage</a></li>
-            <li class="loud"><a href="/index">Raw Data</a></li>
             <li class="loud"><p>欢迎您：admin</p></li>
         </ul>
     </header>
@@ -85,7 +84,7 @@
       <tbody>
        {% for i in range(0,length) %}
           <tr style="color:#007979;height: 10px;">
-            <td width="40%">{{ ip_list[i] }}</td>
+              <td width="40%"><a style="color: #007979" id="ip" href="javascript:get_raw()">{{ ip_list[i] }}</a></td>
             <td width="40%">{{ type_list[i] }}</td>
             <td width="20%">{{ time_list[i] }}</td>
           </tr>
@@ -136,7 +135,19 @@
         {{ streamcharts | safe }}
     </div>
 </div>
+
+<script>
+    function get_raw() {
+        ip=document.getElementById("ip")
+        ip.href="/get_raw_data?ip="+ip.textContent;
+        {#alert(ip.href);#}
+         window.location.href=ip.href;
+}
+
+</script>
 </body>
+
+
 
 
 </html>

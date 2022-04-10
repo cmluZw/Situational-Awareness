@@ -5,7 +5,7 @@ from flask import Flask, request, render_template, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from admin import user,ipanalyse,sshanalyse,networkanalyse,processanalyse,apacheanalyse
 from charts import apacheCharts,earthMapCharts,sshCharts,networkCharts,processCharts,attackeventCharts
-from charts.manage import ip_manageCharts
+from charts.manage import ip_manageCharts, dangerous_manageCharts
 from admin.manage import ip_manage,event_manage
 from flask_mail import Mail,Message
 from admin.manage import dangerous_manage
@@ -25,6 +25,9 @@ db = SQLAlchemy(app)
 
 ncap = Thread(target=networkanalyse.networkanalyse)
 ncap.start()
+
+check=Thread(target=dangerous_manage.danger)
+check.start()
 
 # 初始化
 # @app.route('/',methods=['GET','POST'])
@@ -66,6 +69,7 @@ def ip_manage():
     ipcountry_pie,foreign_num = ip_manageCharts.selectby_countryCharts()
     ipcity_pie,china_num=ip_manageCharts.selectby_chinacityCharts()
     earthmapcharts = earthMapCharts.earthMap()
+    dangerBar=dangerous_manageCharts.dangerBarCharts()
     return render_template('manage/ipmanage.html',
                            ipcountry_pie=ipcountry_pie.render_embed(),
                            ipcity_pie=ipcity_pie.render_embed(),
@@ -78,7 +82,8 @@ def ip_manage():
                            city_name=city_name,
                            time=time,
                            addwhite=addwhite,
-                           earthmapcharts=earthmapcharts.render_embed()
+                           earthmapcharts=earthmapcharts.render_embed(),
+                           dangerBar=dangerBar.render_embed(),
                            )
 
 # 发送邮箱，用于告警
@@ -101,7 +106,8 @@ def testhtml():
 #原始数据
 @app.route('/get_raw_data',methods=['GET','POST'])
 def get_raw_data():
-    ip = request.form['ip']
+    # ip = request.form['ip']
+    ip=request.args.get('ip')
     apache_raw,ssh_raw,network_raw=event_manage.getraw_data(ip)
     print(apache_raw,ssh_raw,network_raw)
     return ip
