@@ -9,7 +9,7 @@ MAIL_SERVER = 'smtp.qq.com'
 MAIL_PORT= 587
 MAIL_USE_TLS = True
 MAIL_USERNAME = '1551505032@qq.com'
-MAIL_PASSWORD = 'zmybnrktcjghfhbe'
+MAIL_PASSWORD = 'yourpassword'
 
 
 # Web日志路径

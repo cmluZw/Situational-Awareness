@@ -39,75 +39,147 @@
     </header>
     <script src='static/js/jquery.min.js'></script>
     <script src="static/js/script.js"></script>
-{#ip全部展示,表格#}
-         <div class="container">
-        <div class="card m-3 p-3">
-            <div class="table-responsive">
-                <table class="table table-bordered table-striped" id="myTable" border="1">
-                    <thead>
-                        <tr>
-                            <th>ip</th>
-                            <th>国家</th>
-                            <th>城市</th>
-                            <th is-type="date" data-format="YYYY/MM/DD">时间</th>
-                            <th>原始数据</th>
-                        </tr>
-                    </thead>
-                 <tbody>
-              {% for i in range(0,length) %}
+
+
+{#世界地图展示#}
+        <div id="world" style="position: absolute; width: 80%; height: 85vh; margin-left: 8%; margin-top: 5vh; ">
+        {{ earthmapcharts | safe }}
+    </div>
+
+{#攻击ip统计图表展示#}
+    <div style="position: absolute; width: 20%; height: 20vh; margin-left: 0%; margin-top: 5vh; z-index: 10;  ">
+       <span style="color:#FFD700;text-align:center;">------ip来源国家统计------</span>
+        {{ ipcountry_pie | safe }}
+    </div>
+<br>
+    <div style="position: absolute; width: 20%; height: 20vh; margin-left: 0%; margin-top: 38vh; z-index: 10;  ">
+        <span style="color:#FFD700;text-align:center;">------中国城市ip来源统计------</span>
+         {{ ipcity_pie | safe }}
+    </div>
+
+{#ip展示#}
+<div id="display_box">
+  <span style="color:#FFD700;margin-right:0%;">-----------攻击事件显示-----------</span>
+  <div style="width: 100%;color:#FFD700">
+    <span style="display: inline-block;width: 15%">IP</span>
+    <span style="display: inline-block;width: 15%;">国家</span>
+      <span style="display: inline-block;width: 25%;">城市</span>
+    <span style="display: inline-block;width: 15%;" data-format="YYYY/MM/DD">时间</span>
+  </div>
+</div>
+<div id="table_box">
+    <table>
+ {% for i in range(0,length) %}
                   <tr>
-                <td style="color:#007979">{{ ip_list[i] }}</td>
-                  <td style="color:#007979">{{ country_name[i] }}</td>
-                  <td style="color:#007979">{% if country_specificname[i]!=None %}
+                <td style="color:#007979;width:5%"><a href="{{ url_for('get_raw_data') }}">{{ ip_list[i] }}</a></td>
+                  <td style="color:#007979;width:5%">{{ country_name[i] }}</td>
+                  <td style="color:#007979;width:25%">{% if country_specificname[i]!=None %}
                       {{ country_specificname[i] }}
                       {% else %}
                       {{  city_name[i] }}
                       {% endif %}
                   </td>
-                  <td style="color:#007979">{{ time[i] }}</td>
-                  <td>
-                      <form action="{{ url_for('get_raw_data') }}" method="post">
-                          <input type="hidden" name="ip" value="{{ip_list[i]}}"/>
-                      <button type="submit">原始数据</button>
-                  </form>
-                  </td>
+                  <td style="color:#007979;width:15%">{{ time[i] }}</td>
                   </tr>
                  {% endfor %}
-                  </tbody>
-                  </table>
-                <p class="lead"><button class="btn btn-danger" onclick="x.DownloadCSV('csv');">导出 (CSV)</button> <button class="btn btn-danger" onclick="x.DownloadJSON('json');">导出 (JSON)</button>
-            </div>
-        </div>
-    </div>
-                  <br>
-                      <script src="/static/js/index.js"></script>
-    <script>
-        let x = new RdataTB('myTable');
-
-    </script>
-    <script src="/static/js/bootstrap.bundle.min.js" ></script>
-
-
-          </table>
-    </div>
+    </table>
 </div>
+    <style>
+  ::-webkit-scrollbar {
+    width: 4px;
+  }
+  ::-webkit-scrollbar-thumb {
+    -webkit-box-shadow: inset 0 0 1px rgba(136, 136, 136, 0.3);
+    background-color: rgb(238, 241, 245);
+  }
+  table {
+    width: 100%;
+    border: none;
+    text-align: left;
+    color: #FFD700;
+    font-size: 14px;
+    line-height:20px;
+    font-family: monospace;
+  }
+  #display_box {
+    position: absolute;
+    width: 40%;
+    height: 20vh;
+    margin-left: 85%;
+    z-index: 10;
+    margin-top: 5vh;
+  }
+  #table_box {
+    position: absolute;
+    width: 40%;
+    height: 70vh;
+    margin-left: 85%;
+    margin-top: 10vh;
+    z-index: 10;
+    overflow: scroll;
+    overflow-x: hidden;
+  }
+</style>
 
 
 
-{#图表展示#}
-<div>
 
-    <div style="position: absolute;background: whitesmoke;width: 84%;margin-left: 8%;">
 
-        {{ ipcountry_pie | safe }}
-            <span style="color: white;position: center">国外ip总数：{{ foreign_num }}</span>
 
-        {{ ipcity_pie |safe }}
-        <span style="color: white;position: center">国内ip总数：{{ china_num }}</span>
 
-    </div>
-</div>
 
+
+{##}
+{##}
+{#ip全部展示,表格#}
+{#         <div class="container">#}
+{#        <div class="card m-3 p-3">#}
+{#            <div class="table-responsive">#}
+{#                <table class="table table-bordered table-striped" id="myTable" border="1">#}
+{#                    <thead>#}
+{#                        <tr>#}
+{#                            <th>ip</th>#}
+{#                            <th>国家</th>#}
+{#                            <th>城市</th>#}
+{#                            <th is-type="date" data-format="YYYY/MM/DD">时间</th>#}
+{#                            <th>原始数据</th>#}
+{#                        </tr>#}
+{#                    </thead>#}
+{#                 <tbody>#}
+{#              {% for i in range(0,length) %}#}
+{#                  <tr>#}
+{#                <td style="color:#007979">{{ ip_list[i] }}</td>#}
+{#                  <td style="color:#007979">{{ country_name[i] }}</td>#}
+{#                  <td style="color:#007979">{% if country_specificname[i]!=None %}#}
+{#                      {{ country_specificname[i] }}#}
+{#                      {% else %}#}
+{#                      {{  city_name[i] }}#}
+{#                      {% endif %}#}
+{#                  </td>#}
+{#                  <td style="color:#007979">{{ time[i] }}</td>#}
+{#                  <td>#}
+{#                      <form action="{{ url_for('get_raw_data') }}" method="post">#}
+{#                          <input type="hidden" name="ip" value="{{ip_list[i]}}"/>#}
+{#                      <button type="submit">原始数据</button>#}
+{#                  </form>#}
+{#                  </td>#}
+{#                  </tr>#}
+{#                 {% endfor %}#}
+{#                  </tbody>#}
+{#                  </table>#}
+{#                <p class="lead"><button class="btn btn-danger" onclick="x.DownloadCSV('csv');">导出 (CSV)</button> <button class="btn btn-danger" onclick="x.DownloadJSON('json');">导出 (JSON)</button>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{#                  <br>#}
+{#                      <script src="/static/js/index.js"></script>#}
+{#    <script>#}
+{#        let x = new RdataTB('myTable');#}
+{#    </script>#}
+{#    <script src="/static/js/bootstrap.bundle.min.js" ></script>#}
+{#          </table>#}
+{#    </div>#}
+{#</div>#}
 </body>
 
 

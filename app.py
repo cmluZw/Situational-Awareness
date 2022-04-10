@@ -65,6 +65,7 @@ def ip_manage():
         length,ip_list,country_name,country_specificname,city_name,time=ip_manageCharts.selectalllistCharts()
     ipcountry_pie,foreign_num = ip_manageCharts.selectby_countryCharts()
     ipcity_pie,china_num=ip_manageCharts.selectby_chinacityCharts()
+    earthmapcharts = earthMapCharts.earthMap()
     return render_template('manage/ipmanage.html',
                            ipcountry_pie=ipcountry_pie.render_embed(),
                            ipcity_pie=ipcity_pie.render_embed(),
@@ -77,6 +78,7 @@ def ip_manage():
                            city_name=city_name,
                            time=time,
                            addwhite=addwhite,
+                           earthmapcharts=earthmapcharts.render_embed()
                            )
 
 # 发送邮箱，用于告警
