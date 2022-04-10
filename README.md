@@ -72,3 +72,11 @@
 
 
 至此核心功能已经大致增加完毕，明天开始前端整理
+
+2022-4-10
+1.登录界面样式更换：
+![image](https://user-images.githubusercontent.com/78641812/162612427-1a18f144-40fa-48ed-b123-b22211ccc0dc.png)
+
+2.ip管理页面前端整理，如下：
+![image](https://user-images.githubusercontent.com/78641812/162612451-31ac6a4c-8e5c-4219-b195-185d209272ca.png)
+
