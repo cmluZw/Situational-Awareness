@@ -80,3 +80,8 @@
 2.ip管理页面前端整理，如下：
 ![image](https://user-images.githubusercontent.com/78641812/162612451-31ac6a4c-8e5c-4219-b195-185d209272ca.png)
 
+![image](https://user-images.githubusercontent.com/78641812/162619983-eb0eaeca-b6c7-436d-a92d-b019291f92ef.png)
+
+ip管理页面大概就这样了，本来还想增加一些功能，但是前端实在是太折磨人了，先就这样了。
+
+
