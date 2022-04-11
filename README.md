@@ -84,4 +84,14 @@
 
 ip管理页面大概就这样了，本来还想增加一些功能，但是前端实在是太折磨人了，先就这样了。
 
+自动告警存在的bug为：运行后置执行一次，这里涉及到线程，（当时逃课了，所以我不知道怎么才能让他一直运行又不卡死，等待学习ing........QAQ）
+
+2022-4-11
+
+1.ip管理页面前端整理如下：
+
+![image](https://user-images.githubusercontent.com/78641812/162699187-6f46d6ff-9e4c-49a8-a3e1-383b66e5b90b.png)
+
+![image](https://user-images.githubusercontent.com/78641812/162699338-5f5cfca2-576e-47e3-8614-508b264cd27c.png)
+
 
