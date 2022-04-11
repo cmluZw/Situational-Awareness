@@ -92,3 +92,6 @@ ip管理页面大概就这样了，本来还想增加一些功能，但是前端
 
 ![image](https://user-images.githubusercontent.com/78641812/162699187-6f46d6ff-9e4c-49a8-a3e1-383b66e5b90b.png)
 
+![image](https://user-images.githubusercontent.com/78641812/162699338-5f5cfca2-576e-47e3-8614-508b264cd27c.png)
+
+
