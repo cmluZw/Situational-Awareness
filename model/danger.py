@@ -57,6 +57,12 @@ class Danger(db.Model):
         data = db.session.execute(sql)
         return data
 
+    def getisdeal(self):
+        sql="SELECT is_deal FROM danger where ip='{}'".format(self.ip)
+        data = db.session.execute(sql)
+        data_list=data.fetchall()
+        return data_list
+
     def isdealStatistics(self):
         sql="SELECT ip AS 'ip',COUNT(ip) AS 'num' FROM danger where is_deal=1 GROUP BY ip ;"
         data = db.session.execute(sql)

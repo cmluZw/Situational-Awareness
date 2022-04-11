@@ -15,7 +15,7 @@ app.config.from_pyfile('../config.py')
 db = SQLAlchemy(app)
 
 
-reader = geoip2.database.Reader(r'D:\bishe\Situational-Awareness\libs\GeoLite2-City.mmdb')
+reader = geoip2.database.Reader(r'libs\GeoLite2-City.mmdb')
 
 
 # 查询IP地址对应的物理地址

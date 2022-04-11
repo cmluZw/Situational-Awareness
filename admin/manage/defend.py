@@ -13,7 +13,7 @@ def defend(ip):
         output = stream.read().split()
         stream.close()
         if output:
-            return 0
+            return 0#防御成功
         return 1
     except:
         return 1

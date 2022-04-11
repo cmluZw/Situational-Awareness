@@ -4,7 +4,7 @@ from admin.manage import dangerous_manage
 from model.danger import Danger
 from admin.manage import defend
 from pyecharts import Bar, Grid, Page, Line
-
+import admin.manage.defend
 
 def selectdanger():
     danger=Danger()
@@ -19,6 +19,16 @@ def selectdanger():
     print(ip_list,time_list,is_deal_list)
     return ip_list,time_list,is_deal_list
 
+def selectisdeal(ip):
+    danger=Danger()
+    danger.ip=ip
+    data_list=danger.getisdeal()
+    for i in data_list:
+        if i.is_deal == 1:  #已经被处理
+            return 1
+        else:
+            pass
+    return 0
 
 def dealdanger():#防御
     ip_list, time_list, is_deal_list=selectdanger()
@@ -34,6 +44,19 @@ def dealdanger():#防御
                 print("ip: {} 防御失败".format(ip_list[i]))
         else:
             pass
+
+def dealdangerbyself(ip):
+
+    defendresult=defend.defend(ip)    #防御
+    if defendresult==1: #防御失败
+        print(ip+" 防御失败")
+        return 0
+    result = dangerous_manage.dealdanger(ip)  # 修改数据库
+    if result==0:
+        return 0 #错误
+    else:
+        return 1
+
 
 def dangerBarCharts():
     danger=Danger()
@@ -52,12 +75,14 @@ def dangerBarCharts():
         not_deal_num_ip.append(i.num)
     print(not_deal_ip_list,not_deal_num_ip)
     bar = Bar("")
-    page = Page()
-    bar.add("防御成功", is_deal_ip_list, is_deal_num_ip, is_label_show=False,is_legend_show=False, is_toolbox_show=False,is_xaxis_show=False,is_yaxis_show= False,label_color=['#007979'])
-    bar.add("防御失败", not_deal_ip_list, not_deal_num_ip,is_label_show=False,is_legend_show=False, is_toolbox_show=False,is_xaxis_show=False,is_yaxis_show= False,label_color=['#CDCD9A'])
+    bar.add("防御成功", is_deal_ip_list, is_deal_num_ip, is_label_show=False,is_legend_show=False, is_toolbox_show=False,is_xaxis_show=False,is_yaxis_show= False,label_color=['#007979'],is_convert=True)
+    bar.add("防御失败", not_deal_ip_list, not_deal_num_ip,is_label_show=False,is_legend_show=False, is_toolbox_show=False,is_xaxis_show=False,is_yaxis_show= False,label_color=['#CDCD9A'],is_convert=True)
     # bar.render()
+    grid = Grid(width="25%", height="400px")
+    grid.add(bar,grid_top=0,)
     #
     # return page
-    return bar
+    # grid.render()
+    return grid
 # dangerBarCharts()
 # dealdanger()

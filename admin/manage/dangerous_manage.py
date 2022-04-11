@@ -92,10 +92,15 @@ def check():
 def dealdanger(ip):
     danger=Danger()
     danger.ip=ip
+    result=danger.selectbyip()
+    length=len(result)
+    if length==0:
+        danger.time=strftime("%H:%M:%S")
+        danger.insert()
     try:
         data=danger.deal()
     except:
-        data=0
+        data=0  #错误返回0
     print(data)
     return data
 

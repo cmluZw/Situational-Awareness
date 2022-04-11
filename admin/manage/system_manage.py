@@ -46,7 +46,7 @@ def emailconfig(server,port,is_use_tls,username,password,recipient):
     MAIL_PORT = 587
     MAIL_USE_TLS = True
     MAIL_USERNAME = '1551505032@qq.com'
-    MAIL_PASSWORD = 'zmybnrktcjghfhbe'
+    MAIL_PASSWORD = 'yourpassword'
     mail_recipient='2534395766@qq.com'
     if server and port and is_use_tls and username and password and recipient:
         MAIL_SERVER=server

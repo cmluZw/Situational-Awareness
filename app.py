@@ -51,25 +51,34 @@ def login():
     else:
         return render_template('login.html')
 
+#防火墙
+@app.route('/defend',methods=['GET','POST'])
+def defend():
+    ip = request.form['defend_ip']
+    dangerous_manageCharts.dealdangerbyself(ip)
+
+
 #ip管理
 @app.route('/ip_manage',methods=['GET','POST'])
 def ip_manage():
-
     if request.method == 'POST':
-        search = request.form['search']
-        addwhite = request.form['addwhite']
-    else:
-        search=0
-        addwhite=0
+        ip = request.form['defend_ip']
+        result=dangerous_manageCharts.dealdangerbyself(ip)
+        if result==0:
+            print(ip+" 防御失败")
 
-    if search:
-        length, ip_list, country_name, country_specificname, city_name, time = ip_manageCharts.ip_searchCharts(search)
-    else:
-        length,ip_list,country_name,country_specificname,city_name,time=ip_manageCharts.selectalllistCharts()
+    defend_index_list=[]
+    length,ip_list,country_name,country_specificname,city_name,time=ip_manageCharts.selectalllistCharts()
+    for i in ip_list:
+        defend_index = dangerous_manageCharts.selectisdeal(i)
+        defend_index_list.append(defend_index)
+        # info_list.append("已防御")
+    # print(defend_index_list)
     ipcountry_pie,foreign_num = ip_manageCharts.selectby_countryCharts()
     ipcity_pie,china_num=ip_manageCharts.selectby_chinacityCharts()
     earthmapcharts = earthMapCharts.earthMap()
     dangerBar=dangerous_manageCharts.dangerBarCharts()
+
     return render_template('manage/ipmanage.html',
                            ipcountry_pie=ipcountry_pie.render_embed(),
                            ipcity_pie=ipcity_pie.render_embed(),
@@ -81,7 +90,7 @@ def ip_manage():
                            country_specificname=country_specificname,
                            city_name=city_name,
                            time=time,
-                           addwhite=addwhite,
+                           index_list=defend_index_list,
                            earthmapcharts=earthmapcharts.render_embed(),
                            dangerBar=dangerBar.render_embed(),
                            )
@@ -106,7 +115,6 @@ def testhtml():
 #原始数据
 @app.route('/get_raw_data',methods=['GET','POST'])
 def get_raw_data():
-    # ip = request.form['ip']
     ip=request.args.get('ip')
     apache_raw,ssh_raw,network_raw=event_manage.getraw_data(ip)
     print(apache_raw,ssh_raw,network_raw)
