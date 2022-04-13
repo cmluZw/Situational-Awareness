@@ -1,3 +1,5 @@
+import os
+from datetime import timedelta
 
 DEBUG = True
 SQLALCHEMY_ECHO = False
@@ -11,6 +13,10 @@ MAIL_PORT= 587
 MAIL_USE_TLS = True
 MAIL_USERNAME = '1551505032@qq.com'
 MAIL_PASSWORD = 'yourpasswd'
+
+#登录session设置
+SECRET_KEY=os.urandom(24)
+PERMANENT_SESSION_LIFETIME=timedelta(hours=5)
 
 
 # Web日志路径

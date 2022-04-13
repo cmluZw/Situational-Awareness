@@ -1,7 +1,7 @@
 # -*- coding:utf-8 -*-
 from threading import Thread
 
-from flask import Flask, request, render_template, redirect, url_for
+from flask import Flask, request, render_template, redirect, url_for, session
 from flask_sqlalchemy import SQLAlchemy
 from admin import user,ipanalyse,sshanalyse,networkanalyse,processanalyse,apacheanalyse
 from charts import apacheCharts,earthMapCharts,sshCharts,networkCharts,processCharts,attackeventCharts
@@ -30,11 +30,14 @@ check=Thread(target=dangerous_manage.danger)
 check.start()
 
 # 初始化
-# @app.route('/',methods=['GET','POST'])
-# def init():
-#     sshanalyse.analyseByfile()
-#     apacheanalyse.apacheanalyse()
-#     return redirect(url_for('login'))
+@app.route('/',methods=['GET','POST'])
+def init():
+    if session.get('username')!='admin':
+        return render_template('login.html')
+    else:
+        # sshanalyse.analyseByfile()
+        # apacheanalyse.apacheanalyse()
+        return redirect(url_for('index'))
 
 # 登录面板
 @app.route('/login',methods=['GET','POST'])
@@ -45,6 +48,7 @@ def login():
 
         info=user.check(str(username),str(password))
         if info=='登录成功':
+            session['username'] = 'admin'
             return redirect(url_for('index'))
         else:
             return render_template('login.html', login_info='账号或密码错误')
@@ -61,6 +65,8 @@ def defend():
 #ip管理
 @app.route('/ip_manage',methods=['GET','POST'])
 def ip_manage():
+    if session.get('username')!='admin':
+        return render_template('login.html')
     if request.method == 'POST':
         ip = request.form['defend_ip']
         result=dangerous_manageCharts.dealdangerbyself(ip)
@@ -106,15 +112,17 @@ def sendEmail():
     return '邮件发送成功'
 
 
-
-@app.route('/test',methods=['GET','POST'])
-def testhtml():
-    return render_template("test.html")
+#
+# @app.route('/test',methods=['GET','POST'])
+# def testhtml():
+#     return render_template("test.html")
 
 
 #原始数据
 @app.route('/get_raw_data',methods=['GET','POST'])
 def get_raw_data():
+    if session.get('username')!='admin':
+        return render_template('login.html')
     ip=request.args.get('ip')
     event_num=event_manageCharts.dealevent_numCharts(ip)
     length=len(event_num)
@@ -136,30 +144,32 @@ def get_raw_data():
 #         return redirect(url_for('sendEmail'))
 #     return 0
 
-@app.route('/ip',methods=['GET'])
-def localbyip():
-    ip=request.args.get('ip')
-    ipanalyse.seperate_ip(ip)
-    return 'ip存入'
+# @app.route('/ip',methods=['GET'])
+# def localbyip():
+#     ip=request.args.get('ip')
+#     ipanalyse.seperate_ip(ip)
+#     return 'ip存入'
+#
+# @app.route('/ssh',methods=['GET'])
+# def ssh():
+#     sshanalyse.analyseByfile()
+#     return 'ssh存入'
+#
+# @app.route('/apache',methods=['GET'])
+# def apache():
+#     apacheanalyse.apacheanalyse()
+#     return 'apache存入'
 
-@app.route('/ssh',methods=['GET'])
-def ssh():
-    sshanalyse.analyseByfile()
-    return 'ssh存入'
-
-@app.route('/apache',methods=['GET'])
-def apache():
-    apacheanalyse.apacheanalyse()
-    return 'apache存入'
-
-#系统设置
-@app.route('/config',methods=['GET'])
-def config():
-    return 'dd'
+# #系统设置
+# @app.route('/config',methods=['GET'])
+# def config():
+#     return 'dd'
 
 #面板首页
 @app.route('/index',methods=['GET','POST'])
 def index():
+    if session.get('username')!='admin':
+        return render_template('login.html')
     #图表绘制
     apachecharts=apacheCharts.apachePieCharts()
     apache_id = apachecharts._chart_id
