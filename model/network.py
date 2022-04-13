@@ -23,7 +23,7 @@ class Network(db.Model):
 
     attack_type=db.Column(db.String(200))
 
-    raw_request=db.Column(db.String(20000))
+    raw_request=db.Column(db.Text())
 
     all_time = {'00:00': [0, 0], '01:00': [0, 0], '02:00': [0, 0], '03:00': [0, 0], '04:00': [0, 0], '05:00': [0, 0],
                 '06:00': [0, 0], '07:00': [0, 0], '08:00': [0, 0], '09:00': [0, 0], '10:00': [0, 0], '11:00': [0, 0],
@@ -79,5 +79,11 @@ class Network(db.Model):
         sql="SELECT raw_request from network where srcip='{}'".format(self.srcip)
         data = db.session.execute(sql)
         data_list=data.fetchall()
+        # print(data.fetchall())
+        return data_list
+    def selectevent_byip(self):
+        sql = "SELECT attack_type from network where srcip='{}'".format(self.srcip)
+        data = db.session.execute(sql)
+        data_list = data.fetchall()
         # print(data.fetchall())
         return data_list

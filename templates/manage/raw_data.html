@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh">
+    <title>态势感知系统</title>
+     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="static/echarts/echarts.min.js"></script>
+    <script src="static/echarts/world.js"></script>
+    <script src="static/js/jquery-3.4.0.min.js"></script>
+    <link rel="stylesheet" href="static/css/reset.min.css">
+    <link rel="stylesheet" href="static/css/style.css">
+     <link rel="stylesheet" href="static/css/bootstrap.min.css">
+
+</head>
+
+
+<body style="background: #1b1f23">
+
+{#下拉菜单#}
+    <header>
+        <button class="toggle-nav">
+            <span>></span>
+        </button>
+        <ul class="nav">
+            <li class="loud"><a href="/index">Home</a></li>
+            <li class="loud"><a href="/ip_manage">IP Manage</a></li>
+            <li class="loud"><a href="/get_raw_data">Raw Data</a></li>
+            <li class="loud"><p>欢迎您：admin</p></li>
+        </ul>
+    </header>
+    <script src='static/js/jquery.min.js'></script>
+    <script src="static/js/script.js"></script>
+{% if ip %}
+<div style="color:#128d75;font-size: 50px;position: absolute; margin-left:37%;margin-top: 15vh; ">{{ ip }}</div>
+{% else %}
+<div style="color:#128d75;position: absolute; margin-left:37%;margin-top: 15vh; ">
+<form action="{{ url_for('get_raw_data') }}" method="get">
+    <input name="ip"  type="text" placeholder="请输入ip">
+    <button type="submit">搜索</button>
+</form>
+</div>
+{% endif %}
+<div style="font-size: 30px;position: absolute; margin-left:13%;margin-top: 25vh;color: #128d75">
+<tr>
+    {% for key ,value in event_num.items() %}
+        <td>
+          {{ key }}:
+    </td>
+        <td>{{ value }}</td>
+    {% endfor %}
+</tr>
+</div>
+
+{#原始数据显示#}
+  <div style="position: absolute;  height: 40vh;width:80%; margin-left:10%; margin-top: 35vh; z-index: 10;  ">
+   <div class="container">
+        <div class="card m-3 p-3">
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped" id="myTable" border="1">
+                    <thead>
+                        <tr>
+                            <th>IP</th>
+                            <th>来源</th>
+                            <th>原始数据</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for i in network_raw %}
+                   <tr>
+                       <td>{{ ip }}</td>
+                       <td>流量监控</td>
+                        <td>{{ i }}</td>
+                   </tr>
+                    {% endfor %}
+                    {% for i in ssh_raw %}
+                   <tr>
+                       <td>{{ ip }}</td>
+                       <td>SSH日志监控</td>
+                        <td>{{ i }}</td>
+                   </tr>
+                    {% endfor %}
+                    {% for i in apache_raw %}
+                   <tr>
+                       <td>{{ ip }}</td>
+                       <td>中间件日志监控</td>
+                        <td>{{ i }}</td>
+                   </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                <p class="lead"><button class="btn btn-danger" onclick="x.DownloadCSV('csv');">导出 (CSV)</button> <button class="btn btn-danger" onclick="x.DownloadJSON('json');">导出 (JSON)</button>
+            </div>
+        </div>
+    </div>
+</div>
+    <script src="static/js/index.js"></script>
+    <script>
+        let x = new RdataTB('myTable');
+
+    </script>
+    <script src="static/js/bootstrap.bundle.min.js" ></script>
+</body>
+
+
+</html>

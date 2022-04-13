@@ -57,3 +57,9 @@ class Apache(db.Model):
     def insert(self):
         db.session.add(self)
         db.session.commit()
+    def selectevent_byip(self):
+        sql = "SELECT attack_type from apache where ip='{}'".format(self.ip)
+        data = db.session.execute(sql)
+        data_list = data.fetchall()
+        # print(data.fetchall())
+        return data_list

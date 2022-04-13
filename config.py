@@ -3,13 +3,14 @@ DEBUG = True
 SQLALCHEMY_ECHO = False
 SQLALCHEMY_TRACK_MODIFICATIONS=True
 SQLALCHEMY_DATABASE_URI='mysql+pymysql://root:123456789@127.0.0.1:3306/situational?charset=utf8'
+SQLALCHEMY_POOL_SIZE = 100
 
 #邮箱设定
 MAIL_SERVER = 'smtp.qq.com'
 MAIL_PORT= 587
 MAIL_USE_TLS = True
 MAIL_USERNAME = '1551505032@qq.com'
-MAIL_PASSWORD = 'yteljbynlsvcbace'
+MAIL_PASSWORD = 'yourpasswd'
 
 
 # Web日志路径

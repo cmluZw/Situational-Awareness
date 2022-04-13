@@ -5,7 +5,7 @@ from flask import Flask, request, render_template, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from admin import user,ipanalyse,sshanalyse,networkanalyse,processanalyse,apacheanalyse
 from charts import apacheCharts,earthMapCharts,sshCharts,networkCharts,processCharts,attackeventCharts
-from charts.manage import ip_manageCharts, dangerous_manageCharts
+from charts.manage import ip_manageCharts, dangerous_manageCharts,event_manageCharts
 from admin.manage import ip_manage,event_manage
 from flask_mail import Mail,Message
 from admin.manage import dangerous_manage
@@ -116,9 +116,18 @@ def testhtml():
 @app.route('/get_raw_data',methods=['GET','POST'])
 def get_raw_data():
     ip=request.args.get('ip')
+    event_num=event_manageCharts.dealevent_numCharts(ip)
+    length=len(event_num)
     apache_raw,ssh_raw,network_raw=event_manage.getraw_data(ip)
     print(apache_raw,ssh_raw,network_raw)
-    return ip
+    return render_template("manage/raw_data.html",
+                           event_num=event_num,
+                           length=length,
+                           ssh_raw=ssh_raw,
+                           apache_raw=apache_raw,
+                           network_raw=network_raw,
+                           ip=ip,
+                           )
 
 # @app.route('/danger',methods=['GET','POST'])
 # def danger():
