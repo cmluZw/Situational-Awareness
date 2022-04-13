@@ -63,6 +63,10 @@ python3，pyecharts0.x
 
 ![image](https://user-images.githubusercontent.com/78641812/163193967-2c4ade2b-12d3-4cc2-9139-581677ddc966.png)
 
+### 动态demo效果图
+
+![预览](https://user-images.githubusercontent.com/78641812/163195281-04f3d30f-4b1f-40f0-97c8-e753456f4326.gif)
+
 ## 后续和支持
 
 如需测试数据，有bug提交，或是有建议，请联系作者本人(*￣︶￣)
