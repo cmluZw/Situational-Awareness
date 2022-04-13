@@ -113,3 +113,7 @@ ip管理页面大概就这样了，本来还想增加一些功能，但是前端
 
 ![image](https://user-images.githubusercontent.com/78641812/163181033-7493a291-67e9-40ca-b9e2-6da9dd70644b.png)
 
+
+功能已经全部完善。
+
+
