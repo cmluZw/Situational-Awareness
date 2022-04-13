@@ -39,17 +39,18 @@ def encode(password):
     md5.update(password.encode())
     return md5.hexdigest()
 
+def updatepassword(username,password,newpassword):
+    user = User()
+    user.username=username
+    Tpassword=selectpassword(username)
+    md5password=encode(password)
+    if str(md5password) == str(Tpassword):
+        md5newpassword=encode(newpassword)
+        result=user.updatepassword(md5newpassword)
+        if result:
+            return 0 #修改成功
+        else:
+            return 1 #修改失败
+    else:
+        return 1 #修改失败
 
-# #登录面板
-# @app.route('/login',methods=['GET','POST'])
-# def check():
-#     username = request.form['username']
-#     password = request.form['password']
-#     user = User()
-#     user.username=username
-#     Tpassword=selectpassword(username)
-#     #print("Tpassword:"+str(Tpassword)+"   password:"+str(password))
-#     if str(password) == str(Tpassword):
-#         return '登录成功'
-#     else:
-#         return '登录失败'

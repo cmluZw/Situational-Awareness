@@ -55,6 +55,32 @@ def login():
     else:
         return render_template('login.html')
 
+# 密码修改
+@app.route('/admin_info',methods=['GET','POST'])
+def admin_info():
+    if session.get('username')!='admin':
+        return render_template('login.html')
+    if request.method == 'POST':
+        username= request.form['username']
+        password= request.form['password']
+        newpassword=request.form['newpassword']
+        renewpassword=request.form['renewpassword']
+        if newpassword!=renewpassword:
+            info="两次密码错误"
+            return render_template('manage/admin_info.html',info=info)
+        info=user.updatepassword(str(username),str(password),str(newpassword))
+        if info:#修改失败
+            info="密码错误"
+            return render_template('manage/admin_info.html',info=info,)
+        else:
+            info="修改成功"
+            return render_template('manage/admin_info.html',info=info)
+    else:
+        return render_template('manage/admin_info.html')
+
+
+
+
 #防火墙
 @app.route('/defend',methods=['GET','POST'])
 def defend():

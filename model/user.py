@@ -39,3 +39,8 @@ class User(db.Model):
     def getpassword(self):
         return self.password
 
+    def updatepassword(self,newpassword):
+        sql = "update user set password='{0}' where username='{1}'".format(newpassword,self.username)
+        data = db.session.execute(sql)
+        return data
+
