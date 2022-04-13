@@ -95,3 +95,14 @@ ip管理页面大概就这样了，本来还想增加一些功能，但是前端
 ![image](https://user-images.githubusercontent.com/78641812/162699338-5f5cfca2-576e-47e3-8614-508b264cd27c.png)
 
 
+2022-4-13
+
+1.原始数据页面前端整理
+
+![image](https://user-images.githubusercontent.com/78641812/163164688-e4d2d8e8-f558-4cae-b2c4-d1bbbe7e41b5.png)
+
+
+![image](https://user-images.githubusercontent.com/78641812/163164645-44510807-eada-4c17-89e9-819772957b49.png)
+
+
+
