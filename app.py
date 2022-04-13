@@ -1,7 +1,7 @@
 # -*- coding:utf-8 -*-
 from threading import Thread
 
-from flask import Flask, request, render_template, redirect, url_for, session
+from flask import Flask, request, render_template, redirect, url_for, session, flash
 from flask_sqlalchemy import SQLAlchemy
 from admin import user,ipanalyse,sshanalyse,networkanalyse,processanalyse,apacheanalyse
 from charts import apacheCharts,earthMapCharts,sshCharts,networkCharts,processCharts,attackeventCharts
@@ -9,6 +9,7 @@ from charts.manage import ip_manageCharts, dangerous_manageCharts,event_manageCh
 from admin.manage import ip_manage,event_manage
 from flask_mail import Mail,Message
 from admin.manage import dangerous_manage
+from admin.manage import defend as Defend
 
 
 # 建立flask对象
@@ -45,6 +46,8 @@ def login():
     if request.method == 'POST':
         username= request.form['username']
         password= request.form['password']
+        username=Defend.waffilter(username)#过滤处理
+        password=Defend.waffilter(password)
 
         info=user.check(str(username),str(password))
         if info=='登录成功':
@@ -65,6 +68,12 @@ def admin_info():
         password= request.form['password']
         newpassword=request.form['newpassword']
         renewpassword=request.form['renewpassword']
+
+        username=Defend.waffilter(username)#过滤处理
+        password=Defend.waffilter(password)
+        newpassword=Defend.waffilter(newpassword)
+        renewpassword=Defend.waffilter(renewpassword)
+
         if newpassword!=renewpassword:
             info="两次密码错误"
             return render_template('manage/admin_info.html',info=info)
@@ -95,6 +104,7 @@ def ip_manage():
         return render_template('login.html')
     if request.method == 'POST':
         ip = request.form['defend_ip']
+        ip=Defend.waffilter(ip) #过滤处理
         result=dangerous_manageCharts.dealdangerbyself(ip)
         if result==0:
             print(ip+" 防御失败")
@@ -141,7 +151,7 @@ def sendEmail():
 #
 # @app.route('/test',methods=['GET','POST'])
 # def testhtml():
-#     return render_template("test.html")
+#     # return render_template("test.html")
 
 
 #原始数据
@@ -150,6 +160,7 @@ def get_raw_data():
     if session.get('username')!='admin':
         return render_template('login.html')
     ip=request.args.get('ip')
+    ip = Defend.waffilter(ip)  # 过滤处理
     event_num=event_manageCharts.dealevent_numCharts(ip)
     length=len(event_num)
     apache_raw,ssh_raw,network_raw=event_manage.getraw_data(ip)

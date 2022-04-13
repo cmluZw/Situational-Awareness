@@ -1,5 +1,6 @@
 import os
-
+import re
+import config
 
 def defend(ip):
 #     禁ip命令:
@@ -59,3 +60,17 @@ def unlockfile(path):
         return 1
     except:
         return 1
+
+
+def waffilter(x): #为了本系统的安全性，设置waf
+    sqlrule = config.sqlrule
+    xssrule=config.xssrule
+    backrule=config.backrule
+    rule=sqlrule+xssrule+backrule
+    for i in rule:
+        if i in x:
+            x=x.split(i)[0]
+            print(x)
+        else:
+            pass
+    return x
