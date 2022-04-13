@@ -30,7 +30,7 @@ def selectisdeal(ip):
             pass
     return 0
 
-def dealdanger():#防御
+def dealdanger():#被动防御/自动防御
     ip_list, time_list, is_deal_list=selectdanger()
     for i in range(0,len(ip_list)):
         if is_deal_list[i]==0:
@@ -45,7 +45,7 @@ def dealdanger():#防御
         else:
             pass
 
-def dealdangerbyself(ip):
+def dealdangerbyself(ip):  #手动防御/主动防御
 
     defendresult=defend.defend(ip)    #防御
     if defendresult==1: #防御失败

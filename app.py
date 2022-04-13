@@ -90,11 +90,11 @@ def admin_info():
 
 
 
-#防火墙
-@app.route('/defend',methods=['GET','POST'])
-def defend():
-    ip = request.form['defend_ip']
-    dangerous_manageCharts.dealdangerbyself(ip)
+# #防火墙
+# @app.route('/defend',methods=['GET','POST'])
+# def defend():
+#     ip = request.form['defend_ip']
+#     dangerous_manageCharts.dealdangerbyself(ip)
 
 
 #ip管理

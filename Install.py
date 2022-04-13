@@ -31,6 +31,15 @@ CREATE TABLE `attack_ip` (
 ) ENGINE=MyISAM AUTO_INCREMENT=43 DEFAULT CHARSET=utf8;
 '''
 sql3='''
+CREATE TABLE `danger` (
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
+  `ip` varchar(255) DEFAULT NULL,
+  `is_deal` int(11) DEFAULT NULL,
+  `time` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`Id`)
+) ENGINE=MyISAM AUTO_INCREMENT=82 DEFAULT CHARSET=utf8;
+'''
+sql4='''
 CREATE TABLE `network` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
   `srcip` varchar(255) DEFAULT NULL,
@@ -39,26 +48,36 @@ CREATE TABLE `network` (
   `trafficIn` varchar(255) DEFAULT NULL,
   `trafficOut` varchar(255) DEFAULT NULL,
   `attack_type` varchar(255) DEFAULT NULL,
-  `raw_request` varchar(255) DEFAULT NULL,
+  `raw_request` text,
   PRIMARY KEY (`Id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 '''
-sql4='''
-CREATE TABLE `ssh` (
+sql5='''
+CREATE TABLE `raw_data` (
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
+  `srcip` varchar(255) DEFAULT NULL,
+  `dstip` varchar(255) DEFAULT NULL,
+  `raw_request` text,
+  `time` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`Id`)
+) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;'''
+
+sql6='''CREATE TABLE `ssh` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
   `ip` varchar(255) DEFAULT NULL,
   `time` varchar(255) DEFAULT NULL,
   `num` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=MyISAM AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
-'''
-sql5='''
-CREATE TABLE `user` (
+) ENGINE=MyISAM AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;'''
+
+sql7='''CREATE TABLE `user` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(255) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`Id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;'''
+
+sql8='''insert into user(username,password) values ('admin','e10adc3949ba59abbe56e057f20f883e');'''
 
 def create_db(dbhost,dbusername,dbpassword,dbport):
     db = pymysql.connect(host=dbhost, port=int(dbport), user=dbusername, passwd=dbpassword, charset='utf8')
@@ -80,6 +99,9 @@ def initialize(dbhost,dbusername,dbpassword,db,dbport):
             data = cursor.execute(sql3)
             data = cursor.execute(sql4)
             data = cursor.execute(sql5)
+            data = cursor.execute(sql6)
+            data = cursor.execute(sql7)
+            data = cursor.execute(sql8)
             if (data==0):
                 print("数据库创建成功")
             return 1
@@ -94,4 +116,4 @@ def initialize(dbhost,dbusername,dbpassword,db,dbport):
 
 if __name__ == "__main__":
     create_db('localhost','root','123456789','3306')
-    initialize('localhost','root','123456789','situational','3306')
+    initialize('localhost','root','123456789','test','3306')
