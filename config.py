@@ -11,7 +11,7 @@ SQLALCHEMY_POOL_SIZE = 100
 MAIL_SERVER = 'smtp.qq.com'
 MAIL_PORT= 587
 MAIL_USE_TLS = True
-MAIL_USERNAME = '1551505032@qq.com'
+MAIL_USERNAME = 'youremail@qq.com'
 MAIL_PASSWORD = 'yourpasswd'
 
 #登录session设置
