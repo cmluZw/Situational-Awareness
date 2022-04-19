@@ -36,8 +36,8 @@ def init():
     if session.get('username')!='admin':
         return render_template('login.html')
     else:
-        # sshanalyse.analyseByfile()
-        # apacheanalyse.apacheanalyse()
+        sshanalyse.analyseByfile()
+        apacheanalyse.apacheanalyse()
         return redirect(url_for('index'))
 
 # 登录面板
