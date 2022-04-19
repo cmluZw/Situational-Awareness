@@ -42,7 +42,8 @@ def analyseByfile():
     ssh_fp = open('output/analyse/ssh_analyse.txt', 'r')
     raw_data = ssh_fp.readlines()
     ssh_fp.close()
-    length=len(raw_data)-2 #这里-2是为了除去最后的日期 sat 22
+   # length=len(raw_data)-2 #这里-2是为了除去最后的日期 sat 22
+    length=len(raw_data)
     half=int(length/2)
     if length%2!=0:
         return '日志错误'
