@@ -144,7 +144,7 @@ mail = Mail(app)
 
 # @app.route('/sendEmail')
 # def sendEmail():
-#     msg = Message(subject='服务器遭受攻击',sender='1551505032@qq.com',recipients=['2534395766@qq.com'])
+#     msg = Message(subject='服务器遭受攻击',sender='yoursender@qq.com',recipients=['2534395766@qq.com'])
 #     msg.body = '您的服务器正遭受攻击，请前往态势感知系统查看！！'
 #     msg.html = '<b>您的服务器正遭受攻击，请前往态势感知系统查看！！</b> '
 #     mail.send(msg)
