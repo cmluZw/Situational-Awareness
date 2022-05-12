@@ -2,6 +2,7 @@ import time
 
 from model.apache import Apache
 from model.network import Network
+from model.ssh import Ssh
 
 def timehandle(time1):
     # 先转换为时间数组
@@ -22,8 +23,10 @@ def timehandle(time1):
 def selectevent():
     apache=Apache()
     network=Network()
+    ssh=Ssh()
     apache_list = apache.query.all()
     network_list = network.query.all()
+    ssh_list=ssh.query.all()
     ip_list=list()
     time_list=list()
     type_list=list()
@@ -35,6 +38,10 @@ def selectevent():
         ip_list.append(i.srcip)
         time_list.append(timehandle(i.time))
         type_list.append(i.attack_type)
+    for i in ssh_list:
+        ip_list.append(i.ip)
+        time_list.append(timehandle(i.time))
+        type_list.append('107')
     # print(ip_list,time_list,type_list)
 
     for i in range(0,len(ip_list)):

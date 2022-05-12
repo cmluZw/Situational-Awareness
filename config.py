@@ -11,8 +11,8 @@ SQLALCHEMY_POOL_SIZE = 100
 MAIL_SERVER = 'smtp.qq.com'
 MAIL_PORT= 587
 MAIL_USE_TLS = True
-MAIL_USERNAME = '1551505032@qq.com'
-MAIL_PASSWORD = 'yourpasswd'
+MAIL_USERNAME = 'yoursender@qq.com'
+MAIL_PASSWORD = 'yourpassword'
 
 #登录session设置
 SECRET_KEY=os.urandom(24)
@@ -50,8 +50,8 @@ attackType = {
 process = ['apache', 'mysqld', 'vsftpd', 'sshd']
 
 
-local_ip = '39.105.132.34'
-local_adapter = 'wlp4s0'  #网卡名字可不指定
+local_ip = '10.13.9.97'
+local_adapter = 'any'  #网卡名字可不指定
 local_coord = [-118.24368, 34.05223]
 local_city = 'Shanghai'
 

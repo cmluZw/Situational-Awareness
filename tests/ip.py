@@ -98,7 +98,7 @@ def seperate_ip(ip_address):
 
 
 if __name__ == '__main__':
-    seperate_ip('220.182.8.7')
+    seperate_ip('103.71.50.50')
 
 '''
 ================Start===================

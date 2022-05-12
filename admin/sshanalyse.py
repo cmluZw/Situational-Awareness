@@ -36,13 +36,14 @@ ip
 
 # 将ssh的信息存入表，注意，这里是两个表，一个ssh表，ssh表中存放的是ip和num，一个ip表，ip表中存放的是关于ip的经纬度等等
 def analyseByfile():
-    # logBycmd()
+    logBycmd()
     #执行命令，将执行结果写入文件ssh_analyse
     '''监控 ssh 的失败登录日志'''
     ssh_fp = open('output/analyse/ssh_analyse.txt', 'r')
     raw_data = ssh_fp.readlines()
     ssh_fp.close()
-    length=len(raw_data)-2 #这里-2是为了除去最后的日期 sat 22
+    # length=len(raw_data)-2 #这里-2是为了除去最后的日期 sat 22
+    length=len(raw_data)
     half=int(length/2)
     if length%2!=0:
         return '日志错误'

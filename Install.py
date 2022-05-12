@@ -116,4 +116,4 @@ def initialize(dbhost,dbusername,dbpassword,db,dbport):
 
 if __name__ == "__main__":
     create_db('localhost','root','123456789','3306')
-    initialize('localhost','root','123456789','test','3306')
+    initialize('localhost','root','123456789','situational','3306')

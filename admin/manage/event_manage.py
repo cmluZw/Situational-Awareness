@@ -16,8 +16,11 @@ def getraw_data(ip):#通过ip各日志和流量数据查找溯源
     output = stream.read().split()
     stream.close()
     if output:
-        for i in output:
-            apache_raw.append(str(i))
+        print("output: " + str(output))
+        apache_raw.append(str(output))
+    #        for i in output:
+    #            apache_raw.append(str(i))
+
     else:
         pass
     #从ssh日志里溯源

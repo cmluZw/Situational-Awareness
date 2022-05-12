@@ -139,13 +139,13 @@ def ip_manage():
 
 # 发送邮箱，用于告警
 mail = Mail(app)
-@app.route('/sendEmail')
-def sendEmail():
-    msg = Message(subject='服务器遭受攻击',sender='1551505032@qq.com',recipients=['2534395766@qq.com'])
-    msg.body = '您的服务器正遭受攻击，请前往态势感知系统查看！！'
-    msg.html = '<b>您的服务器正遭受攻击，请前往态势感知系统查看！！</b> '
-    mail.send(msg)
-    return '邮件发送成功'
+# @app.route('/sendEmail')
+# def sendEmail():
+#     msg = Message(subject='服务器遭受攻击',sender='1551505032@qq.com',recipients=['2534395766@qq.com'])
+#     msg.body = '您的服务器正遭受攻击，请前往态势感知系统查看！！'
+#     msg.html = '<b>您的服务器正遭受攻击，请前往态势感知系统查看！！</b> '
+#     mail.send(msg)
+#     return '邮件发送成功'
 
 
 #
@@ -208,6 +208,8 @@ def index():
     if session.get('username')!='admin':
         return render_template('login.html')
     #图表绘制
+    #sshanalyse.analyseByfile()
+    #apacheanalyse.apacheanalyse()
     apachecharts=apacheCharts.apachePieCharts()
     apache_id = apachecharts._chart_id
     earthmapcharts=earthMapCharts.earthMap()
@@ -219,6 +221,21 @@ def index():
     streamcharts=networkCharts.streamcharts()
     processcharts=processCharts.processCharts()
     ip_list,time_list,type_list=attackeventCharts.selectevent()
+    flag=0
+    for i in type_list:
+        # print(i)
+        if i=='木马后门' or i=='SQL注入':
+            flag=1
+        else:
+            pass
+    if flag==1:
+        msg = Message(subject='服务器遭受攻击', sender='yoursender@qq.com', recipients=['2534395766@qq.com'])
+        msg.body = '您的服务器正遭受攻击，请前往态势感知系统查看！！'
+        msg.html = '<b>您的服务器正遭受攻击，请前往态势感知系统查看！！</b> '
+        mail.send(msg)
+    else:
+        pass
+
     length=len(ip_list)
     return render_template('base.html',
                            apachecharts=apachecharts.render_embed(),
