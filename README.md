@@ -1,115 +1,78 @@
-# Situational-Awareness 态势感知系统
+# Situational-Awareness
+态势感知系统
 
-参考：https://github.com/lw1988/PyAwearnessSystem
+## 开发
+一个基于linux的态势感知系统，基于python和flask框架开发，项目目录如下：
 
-态势感知系统，基于python和flask，期望能同时在windows和linux上运行
+admin -核心算法
+charts -图表生成
+model -类
+app.py -主文件
+config.py -配置文件
+install.py -安装文件
 
-2022-02-07 更新登录功能
+## 安装
+### 配置
+数据库密码默认设置为root/123456789,后台默认初始密码为：admin/123456，apache日志为默认路径
+如需修改，请修改install.py和config.py里的数据库密码和路径
 
-2022-02-08 修复了登录时因找不到用户名而500的错误，但存在任意不存在用户/0登录的情况
+### 邮箱密码
+如果不需要告警可忽略，需要告警请自行配置config.py里的邮箱和密码（ps:这里的密码是邮箱授权码）
 
-2022-02-08 增加了ip分析和ssh分析的情况，结果存入数据库
+### 环境
+适配linux，且由于作者水平有限，中间件只支持apache，确保linux用户权限为root，且安装有iptables防火墙命令（不需要告警可忽略iptables）
+python3，pyecharts0.x
+**特别说明，在官方给出解决办法之前请勿安装jinja3.1.1，不然会因markup被破坏无法渲染到前端）**
 
-2022-02-09 增加apache日志分析，结果存入数据库，目前只分析了目录遍历和爆破
+### 命令
+在以上基础下，执行以下命令进行安装：
+请用python3执行：
 
-2022-02-10 完成ssh图表可视化和世界攻击ip流向图，如下：
+`python3 install.py`
 
-![image](https://user-images.githubusercontent.com/78641812/153380881-01a38f14-0335-43b6-9ef9-d65d7768c76a.png)
+在依赖和数据库都安装成功成功后，执行
 
-![image](https://user-images.githubusercontent.com/78641812/153381904-08ac98da-94bc-4138-8ba4-d10d76e85290.png)
+`python3 app.py`
 
-2022-03-09 增加了流量分析代码，目前对http和https以及ddos攻击进行分析
+待控制台输出以下字样即安装成功
+`INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)`
 
-2022-03-11 绘制进出口流量图表和流量攻击类型统计饼图，如下：
+****访问127.0.0.1:5000即可
 
-![image](https://user-images.githubusercontent.com/78641812/157826576-add73af5-2999-46d9-b6ab-1896f8a794e7.png)
+如需自动告警功能，请cd到admin/manage目录下，执行
 
-2022-03-14 前端整理中，效果图暂时如下（还未完善左边）
+`python3 autodefend.py` 
 
-![image](https://user-images.githubusercontent.com/78641812/158146651-d441c5d8-3fc5-4db5-90c6-8cc2fd024a37.png)
-
-2022-03-16 前端整理中，效果图如下
-
-![image](https://user-images.githubusercontent.com/78641812/158563462-2d6966e6-5431-42e2-aff0-88630c64a438.png)
-
-2022-03-17 前端整理完成，如下：
-
-![image](https://user-images.githubusercontent.com/78641812/158773590-d43a1b63-ecd8-4431-958f-240ad318d80d.png)
-
-2022-4-03 新增登录界面，修复任意用户登录的bug
-
-![image](https://user-images.githubusercontent.com/78641812/161430621-4e3c5ba7-e996-403b-8bd2-71e9912467a2.png)
-
-
-2022-4-08 
-后端新增功能
-1.ip管理
-
-![image](https://user-images.githubusercontent.com/78641812/162403115-8d5dc0b8-edcf-417c-b997-162183747194.png)
-
-2.自动告警，通过发送邮箱实现自动告警，基本功能实现，但是不完全自动，正在修改。
-
-3.原始数据查看
-后端算法已上传，前端未写
+每两小时会自行检查一次，不需请忽略。
 
 
-前端修改：
-增加菜单：
-![image](https://user-images.githubusercontent.com/78641812/162403401-61476bd0-8a89-4a8a-bb6a-89e1a20006d1.png)
+## 界面展示
 
-![image](https://user-images.githubusercontent.com/78641812/162403424-bbae7ccf-f054-49ba-8f1a-57123e9c2956.png)
+### 登录
+![image](https://user-images.githubusercontent.com/78641812/163193263-a5f48a04-b4b0-479f-a484-1ba172139e83.png)
 
-整体样式未调整
+### 主页
+![image](https://user-images.githubusercontent.com/78641812/163193478-f33ccc19-b8be-4ea4-a71a-77549f3213f3.png)
 
-2022-4-09
+### ip管理
 
-安装bug说明：
-请勿安装jinja2最新版本（3.1.1），3.1.1对markup进行了破坏，可能会无法渲染前端
+![image](https://user-images.githubusercontent.com/78641812/163193685-141841e4-8c3f-4dbe-8c4a-81a18f79b243.png)
 
-后端功能：
-1.自动告警bug修复
-2.主动/被动防御功能增加
+### 溯源数据
 
+![image](https://user-images.githubusercontent.com/78641812/163193967-2c4ade2b-12d3-4cc2-9139-581677ddc966.png)
 
-至此核心功能已经大致增加完毕，明天开始前端整理
+### 动态demo效果图
 
-2022-4-10
-1.登录界面样式更换：
-![image](https://user-images.githubusercontent.com/78641812/162612427-1a18f144-40fa-48ed-b123-b22211ccc0dc.png)
+![预览](https://user-images.githubusercontent.com/78641812/163195281-04f3d30f-4b1f-40f0-97c8-e753456f4326.gif)
 
-2.ip管理页面前端整理，如下：
-![image](https://user-images.githubusercontent.com/78641812/162612451-31ac6a4c-8e5c-4219-b195-185d209272ca.png)
+## 后续和支持
 
-![image](https://user-images.githubusercontent.com/78641812/162619983-eb0eaeca-b6c7-436d-a92d-b019291f92ef.png)
+如需测试数据，有bug提交，或是有建议，请联系作者本人(*￣︶￣)
 
-ip管理页面大概就这样了，本来还想增加一些功能，但是前端实在是太折磨人了，先就这样了。
+静态文件可以自行去echarts-maps下载，如有需要，请联系作者本人(#^.^#)
 
-自动告警存在的bug为：运行后置执行一次，这里涉及到线程，（当时逃课了，所以我不知道怎么才能让他一直运行又不卡死，等待学习ing........QAQ）
+作者qq:2534395766，请备注来意，以便通过 (*^▽^*)
 
-2022-4-11
-
-1.ip管理页面前端整理如下：
-
-![image](https://user-images.githubusercontent.com/78641812/162699187-6f46d6ff-9e4c-49a8-a3e1-383b66e5b90b.png)
-
-![image](https://user-images.githubusercontent.com/78641812/162699338-5f5cfca2-576e-47e3-8614-508b264cd27c.png)
-
-
-2022-4-13
-后端：
-权限管理增加，密码修改功能增加
-
-前端
-
-1.原始数据页面前端整理
-
-![image](https://user-images.githubusercontent.com/78641812/163164688-e4d2d8e8-f558-4cae-b2c4-d1bbbe7e41b5.png)
-
-
-![image](https://user-images.githubusercontent.com/78641812/163164645-44510807-eada-4c17-89e9-819772957b49.png)
-
-
-2.密码修改前端整理完成
-
-![image](https://user-images.githubusercontent.com/78641812/163181033-7493a291-67e9-40ca-b9e2-6da9dd70644b.png)
+若觉得本项目对你有帮助，可以给作者点个❤嘛~~
 
