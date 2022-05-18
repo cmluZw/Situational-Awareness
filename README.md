@@ -39,11 +39,7 @@ python3，pyecharts0.x
 
 ****访问127.0.0.1:5000即可
 
-如需自动告警功能，请cd到admin/manage目录下，执行
-
-`python3 autodefend.py` 
-
-每两小时会自行检查一次，不需请忽略。
+自动告警功能尚未完善。
 
 
 ## 界面展示
