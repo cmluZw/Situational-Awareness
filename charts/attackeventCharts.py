@@ -60,8 +60,7 @@ def selectevent():
         elif type_list[i] == '107':
             type_list[i] = 'SSH爆破'
         else:
-            pass
-            #type_list[i] = '暂无威胁'
+            type_list[i] = '暂无威胁'
 
     return ip_list,time_list,type_list
     # print(ip_list,time_list,type_list)
