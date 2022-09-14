@@ -7,12 +7,12 @@
 ## 开发
 一个基于linux的态势感知系统，基于python和flask框架开发，项目目录如下：
 
-· admin -核心算法
-· charts -图表生成
-· model -类
-· app.py -主文件
-· config.py -配置文件
-· install.py -安装文件
+· admin -核心算法<br>
+· charts -图表生成<br>
+· model -类<br>
+· app.py -主文件<br>
+· config.py -配置文件<br>
+· install.py -安装文件<br>
 
 ## 安装
 ### 配置
@@ -28,7 +28,7 @@ python3，pyecharts0.x <br
 **特别说明，在官方给出解决办法之前请勿安装jinja3.1.1，不然会因markup被破坏无法渲染到前端）**
 
 ### 命令
-在以上基础下，执行以下命令进行安装：<br
+在以上基础下，执行以下命令进行安装：<br>
 请用python3执行：<br>
 
 `python3 install.py`
