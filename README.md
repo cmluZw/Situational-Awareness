@@ -24,7 +24,7 @@
 
 ### 环境
 适配linux，且由于作者水平有限，中间件只支持apache，确保linux用户权限为root，且安装有iptables防火墙命令（不需要告警可忽略iptables）<br>
-python3，pyecharts0.x <br
+python3，pyecharts0.x <br>
 **特别说明，在官方给出解决办法之前请勿安装jinja3.1.1，不然会因markup被破坏无法渲染到前端）**
 
 ### 命令
