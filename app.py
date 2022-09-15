@@ -1,3 +1,5 @@
+# 本系统开源，最新版请访问https://github.com/cmluZw/Situational-Awareness/，拒绝一切形式的非本人授权的商业行为！
+# by:CmluZw
 # -*- coding:utf-8 -*-
 from threading import Thread
 
