@@ -98,7 +98,7 @@ source situational.sql;
 
 ****访问127.0.0.1:5000即可
 
-自动告警功能尚未完善。
+如遇报错，请先查看：https://github.com/cmluZw/Situational-Awareness/issues/6
 
 
 ## 界面展示
