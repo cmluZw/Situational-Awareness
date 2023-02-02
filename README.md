@@ -5,7 +5,7 @@
 态势感知系统，基于python和flask
 
 2022-11-14
-没想到随便写的系统会受到这么多人关注，所以想对这个系统进行升级和维护，原始代码已经打包到release v1.1，预期一个月上线V2.0
+没想到随便写的系统会受到这么多人关注，所以想对这个系统进行升级和维护，原始代码已经打包到release v1.2，预期一个月上线V2.0
 
 预期实现：
 
@@ -35,7 +35,7 @@
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-# V1.1
+# V1.2
 # Situational-Awareness
 态势感知系统
 
@@ -43,7 +43,7 @@
 
 
 前提：此系统只是作者学习flask和态势感知时练手的程序，写的不好，望谅解<br>
-V1.1已经打包到右边发行里，请自取，请不要吝啬您的点赞QVQ，小小的点赞带给作者大大的快乐
+V1.2已经打包到右边发行里，请自取，请不要吝啬您的点赞QVQ，小小的点赞带给作者大大的快乐
 
 ## 开发
 一个基于linux的态势感知系统，基于python和flask框架开发，项目目录如下：
@@ -53,15 +53,14 @@ V1.1已经打包到右边发行里，请自取，请不要吝啬您的点赞QVQ�
 · model -类<br>
 · app.py -主文件<br>
 · config.py -配置文件<br>
-· install.py -安装文件<br>
 
 ## 安装
 ### 配置
-数据库密码默认设置为root/123456789,后台默认初始密码为：admin/123456，apache日志为默认路径<br>
-如需修改，请修改install.py和config.py里的数据库密码和路径
+数据库密码默认设置为root1/123456789,后台默认初始密码为：admin/123456，apache日志为默认路径<br>
+如需修改，请修改config.py里的数据库密码和路径
 
 ### 邮箱密码
-如果不需要告警可忽略，需要告警请自行配置config.py里的邮箱和密码（ps:这里的密码是邮箱授权码）
+如果不需要告警可忽略，需要告警请自行配置config.py和app.py里的邮箱和密码（ps:这里的密码是邮箱授权码）
 
 ### 环境
 适配linux，且由于作者水平有限，中间件只支持apache，确保linux用户权限为root，且安装有iptables防火墙命令（不需要告警可忽略iptables）<br>
@@ -70,9 +69,25 @@ python3（最好是3.7-3.9，过低或过高会报奇怪的错误），pyecharts
 
 ### 命令
 在以上基础下，执行以下命令进行安装：<br>
-请用python3执行：<br>
+安装依赖，请用pip3执行：<br>
 
-`python3 install.py`
+`pip3 install -r requirements.txt`
+
+安装mysql数据库:<br>
+`
+sudo apt install  mysql-server
+`
+创建数据库用户:<br>
+
+`
+CREATE USER 'root1'@'localhost' IDENTIFIED BY '123456789';
+GRANT ALL ON *.* TO 'root1'@'localhost';
+flush privileges;
+`
+`
+create database situational;
+source situational.sql;
+`
 
 在依赖和数据库都安装成功成功后，执行<br>
 
