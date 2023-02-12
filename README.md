@@ -55,7 +55,7 @@ V1.2已经打包到右边发行里，请自取，请不要吝啬您的点赞QVQ�
 · config.py -配置文件<br>
 
 ## 安装
-请下载右边发行代码，数据库文件situational.sql也在发行里<br>
+请下载右边发行代码，数据库文件situational.sql也在发行里，请提前安装好mysql，apache，并启动<br>
 
 ### 配置
 数据库密码默认设置为root1/123456789,后台默认初始密码为：admin/123456，apache日志为默认路径<br>
