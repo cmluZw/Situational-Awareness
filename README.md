@@ -89,6 +89,7 @@ flush privileges;
 <br>
 `
 create database situational;
+use situational;
 source situational.sql;
 `
 
