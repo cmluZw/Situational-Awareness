@@ -4,7 +4,34 @@
 
 态势感知系统，基于python和flask
 
-2023-04-27
+
+## V1.4付费版本
+由于V1.3版本的流量监控相关形同虚设，所以重构了一下代码<br>
+<br>
+<b>V1.4付费版本链接</b>
+<br>
+https://github.com/cmluZw/Situational-Awareness/releases/tag/1.4
+<br>
+更新内容如下:
+- tcp流量全获取，不止是apache服务
+- 真正实现主机流量监控
+- 规则自更新,无需重启服务
+- 其他已知bug修复
+<br>
+
+## V1.3开源版本
+对使用无要求，只想用于学习或者用于二改的请使用V1.3版本，链接为<br>
+
+https://github.com/cmluZw/Situational-Awareness/releases/tag/1.3
+<br>
+
+## 更新记录
+### 2024-05-29
+V1.4 
+<br>
+修复bug，增加流量捕获，规则动态更新
+<br>
+### 2023-04-27
 没想到随便写的系统会受到这么多人关注，所以想对这个系统进行升级和维护，原始代码已经打包到release v1.3，此代码适用于学生，个人，学习，等用途，到V1.3原则上不会再更新。<br>
 <br>
 新系统将加入机器学习，取名Polestar（极星），仓库地址为：https://github.com/cmluZw/Polestar
